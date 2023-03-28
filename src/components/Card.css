@@ -1,0 +1,35 @@
+.card {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    padding: 20px;
+    width: 100%;
+    max-width: 90%;
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .card h3 {
+    font-size: 24px;
+    margin-top: 0;
+  }
+  
+  .card img {
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;
+    object-fit: cover;
+    margin-bottom: 20px;
+  }
+  
+  .card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+  }
+  
+  .card li {
+    margin-bottom: 10px;
+    font-size: 16px;
+  }

@@ -1,0 +1,20 @@
+.back-btn {
+    position: fixed;
+    bottom: 25px;
+    left: 25px;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: none;
+    background-color: #FFD3D3;
+    color: #3d3d3d;
+    font-size: 25px;
+    z-index: 9999;
+  }
+  
+
+  

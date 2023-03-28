@@ -41,7 +41,7 @@ export default function Signup() {
   }
 
   return (
-    <div>
+    <div className="container">
       <form onSubmit={handleSubmit}>
         <label>Username</label>
         <input required type="text" name="username" value={user.username} onChange={handleChange} />

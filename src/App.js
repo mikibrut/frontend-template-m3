@@ -7,8 +7,10 @@ import ErrorPage from './views/ErrorPage';
 import NotFound from './views/NotFound';
 import Signup from './views/auth/Signup';
 import Login from './views/auth/Login';
-import PrivateView from './views/PrivateView';
+import Profile from './views/Profile';
 import IsPrivate from './components/IsPrivate';
+import Mates from './views/Mates';
+import MateDetail from './views/MateDetail';
 
 function App() {
   return (
@@ -17,9 +19,11 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/mates" element={<Mates/>} />
+        <Route path="/mates/:id" element={<MateDetail />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/private" element={<IsPrivate><PrivateView /></IsPrivate>} />
+        <Route path="/profile" element={<IsPrivate><Profile /></IsPrivate>} />
         <Route path="/error" element={<ErrorPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
