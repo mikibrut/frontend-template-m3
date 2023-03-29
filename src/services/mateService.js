@@ -27,14 +27,6 @@ class MateService {
     return this.api.delete(`/${id}`).then(({ data }) => data).catch(err => console.error(err))
   }
 
-  // async getCourses2() {
-  //   try {
-  //     const response = await this.api.get('/');
-  //     return response.data
-  //   } catch (error) {
-  //     console.error(err)
-  //   }
-  // }
 
 
 }

@@ -42,7 +42,7 @@ export default function Signup() {
 
   return (
     <div className="container">
-      <form onSubmit={handleSubmit}>
+      <form className="inner-cont" onSubmit={handleSubmit}>
         <label>Username</label>
         <input required type="text" name="username" value={user.username} onChange={handleChange} />
         <label>Email</label>
@@ -52,7 +52,8 @@ export default function Signup() {
         <label>Repeat the password</label>
         <input required type="password" name="passwordControl" value={passwordControl} onChange={(e) => setPasswordControl(e.target.value)} />
         {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-        <button type="submit">Register</button>
+        <button className="btn" type="submit">
+          <span className="front">Register</span> </button>
       </form>
     </div>
   )

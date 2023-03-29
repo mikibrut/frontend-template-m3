@@ -9,8 +9,8 @@ import Signup from './views/auth/Signup';
 import Login from './views/auth/Login';
 import Profile from './views/Profile';
 import IsPrivate from './components/IsPrivate';
-import Mates from './views/Mates';
-import MateDetail from './views/MateDetail';
+import Mates from './views/mates/Mates';
+import MateDetail from './views/mates/MateDetail';
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/mates" element={<Mates/>} />
-        <Route path="/mates/:id" element={<MateDetail />} />
+        <Route path="/mates/:id" element={<IsPrivate><MateDetail /></IsPrivate>} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<IsPrivate><Profile /></IsPrivate>} />

@@ -1,12 +1,69 @@
-
+body{
+background-image: url(img/backgroundPublic.png);
+z-index: -1;
+}
 
 .container{
+  position: absolute;
   width: 94%;
   margin: 80px 10px 10px 10px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   border: 1px solid #3d3d3d;
   align-self: center;
-  font-family: 'Gravitas One', cursive;
+  font-family: 'Poppins', sans-serif;
 }
+
+.inner-cont {
+  position: relative;
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 25px;
+  border: 2px solid #3d3d3d
+}
+
+label {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+input {
+  padding: 10px;
+  border-radius: 25px;
+  border: 2px solid #3d3d3d;
+  margin-bottom: 20px;
+
+}
+
+.btn {
+  margin-top: 10px;
+  background: #3d3d3d;
+  border-radius: 25px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: #3d3d3d;
+  outline-offset: 4px;
+}
+.front {
+  display: block;
+  padding: 12px 42px;
+  border-radius: 25px;
+  border: 2px solid #3d3d3d;
+  color: #3d3d3d;
+  font-size: 1.25rem;
+  background: #FFD3D3;
+  transform: translateY(-6px);
+}
+
+.btn:active .front {
+  transform: translateY(-2px);
+}
+

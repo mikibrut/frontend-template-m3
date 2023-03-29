@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useAuth } from '../../hooks/useAuth';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import authService from '../../services/authService';
 
 export default function Login() {
@@ -55,8 +55,10 @@ export default function Login() {
         <label>Password</label>
         <input required type="password" name="password" value={user.password} onChange={handleChange} />
         {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-        <button type="submit">Log in </button>
+        <button className="btn" type="submit">
+          <span className="front">Log in</span> </button>
       </form>
+      <Link to="/signup">Create an account</Link>
     </div>
   )
 }

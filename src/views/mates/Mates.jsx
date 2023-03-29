@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import matesService from '../services/mateService';
-import Navbar from '../components/Navbar';
-import CardMate from '../components/CardMate';
-import GoBack from '../components/GoBack';
+import mateService from '../../services/mateService';
+import CardMate from '../../components/CardMate';
+import GoBack from '../../components/GoBack';
 
 
 function Mates() {
@@ -12,7 +11,7 @@ function Mates() {
 
   const getMates = async () => {
     try {
-      const response = await matesService.getMates();
+      const response = await mateService.getMates();
       setMates(response)
       setLoading(false)
     } catch (error) {
@@ -26,7 +25,6 @@ function Mates() {
 
   return (
     <>
-        <Navbar/>
             {loading && <p>Loading...</p>}
             {!loading &&
                 (<div className="container">
