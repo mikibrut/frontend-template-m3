@@ -42,7 +42,7 @@ export default function Signup() {
 
   return (
     <div className="container">
-      <form className="inner-cont" onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <label>Username</label>
         <input required type="text" name="username" value={user.username} onChange={handleChange} />
         <label>Email</label>

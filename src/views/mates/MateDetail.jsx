@@ -36,12 +36,14 @@ export default function MateDetail() {
       <div className="container">
         <h2>Mate details</h2>
           {mate && <div className='card'>
-            <p>{mate.creator.username}</p>
-            <img src={mate.image} alt={mate.user} />
+            <p>{mate.creator.username.charAt(0).toUpperCase() + mate.creator.username.slice(1)}</p>
+            <img src={mate.image} alt={mate.creator.username} />
             <ul>
-                <li>Musical genre: {mate.musicalGenre}</li>
-                <li>Instrument: {mate.musicalInstrument}</li>
-                <li>Genre: {mate.genre}</li>
+                <li>Mate type: {mate.type.map(type => type.charAt(0).toUpperCase() + type.slice(1).toLowerCase()).join(', ')}</li>
+                <li>Musical genre: {mate.musicalGenre.map(musicalGenre => musicalGenre.charAt(0).toUpperCase() + musicalGenre.slice(1).toLowerCase()).join(', ')}</li>
+                <li>Instrument: {mate.musicalInstrument.map(instrument => instrument.charAt(0).toUpperCase() + instrument.slice(1).toLowerCase()).join(', ')}</li>
+                <li>Genre: {mate.genre.charAt(0).toUpperCase() + mate.genre.slice(1)}</li>
+                <li>Contact: {mate.creator.email}</li>
             </ul>
             <button><Link to={`/edit/${mate._id}`}>Edit</Link></button>
             <button onClick={handleDelete}>Delete</button>
