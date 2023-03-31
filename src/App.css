@@ -1,8 +1,17 @@
+
+.app-body{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+  height: 100vh;
+}
+
 body{
   background-color: #FFE1AD;
 }
 
-.container{
+.container {
   position: absolute;
   width: 94%;
   margin: 80px 10px 10px 10px;
@@ -13,9 +22,14 @@ body{
   border: 1px solid #3d3d3d;
   align-self: center;
   font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  color: #3d3d3d;
+  overflow-y: scroll;
 }
 
 form {
+  width: 80%;
   position: relative;
   margin-top: 100px;
   display: flex;
@@ -28,12 +42,14 @@ form {
 }
 
 label {
+  width: 90%;
   font-size: 16px;
   font-weight: bold;
   margin-bottom: 10px;
 }
 
 input {
+  width: 90%;
   padding: 10px;
   border-radius: 25px;
   border: 2px solid #3d3d3d;
@@ -66,10 +82,47 @@ input {
   transform: translateY(-2px);
 }
 
+
+
+.slider-container {
+  width: 70%;
+  margin-left: 60px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  overflow-x: scroll;
+  white-space: nowrap;
+  border-radius: 25px;
+  background-color: transparent;
+}
+
+.slider {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+
+.slide {
+  flex-shrink: 0;
+  width: 300px;
+  margin-right: 1rem;
+  padding-left: 10px;
+}
+.home-body{
+  display: block;
+  align-self: center;
+  justify-content: center;
+  margin-top: 100px;
+  font-family: 'Gravitas One', cursive;
+  font-size: 2vh;
+  color: #3d3d3d;
+  text-align: center;
+}
+
+
 .home-noLog-body{
   position: absolute;
   background-image: url(img/backgroundPublic.png);
-  z-index: 1;
+  z-index: 0;
 }
 
 .home-message{
@@ -87,4 +140,25 @@ input {
   flex-direction: column;
   align-items: center;
   padding: 20px;
+}
+
+.password-input{
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.eye-btn{
+  display: block;
+  position: relative;
+  margin-bottom: 10px;
+  margin-right: 5px;
+  background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+  font-size: 30px;
 }

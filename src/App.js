@@ -14,7 +14,7 @@ import MateDetail from './views/mates/MateDetail';
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <Toaster/>
       <Navbar />
       <Routes>

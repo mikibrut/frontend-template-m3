@@ -24,14 +24,14 @@ function Mates() {
   }, [])
 
   return (
-    <>
+    <div>
             {loading && <p>Loading...</p>}
             {!loading &&
                 (<div className="container">
                     {mates.map(elem =><CardMate key={elem._id} mate={elem}/>)}
                 </div>)}
         <GoBack/>
-    </>
+    </div>
   )
 }
 

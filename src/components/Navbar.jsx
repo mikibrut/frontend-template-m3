@@ -19,13 +19,20 @@ export default function Navbar() {
     return (
     <>
       <ul className="navbar">
-        <li><NavLink to= "/"> {isMenuActive ? <img className="logoBtn" src={logoOscuro} alt="logo-oscuro"/> : <img className="logoBtn" src={logo} alt="logo"/> }</NavLink></li>
-        <li className={`profile-btn ${isMenuActive? 'active' : ''}`}><NavLink to={`/profile`}><CgProfile color="#3d3d3d"/></NavLink></li>
+        <li>
+          <NavLink to= "/"> 
+            {isMenuActive ? <img className="logoBtn" src={logoOscuro} alt="logo-oscuro"/> : <img className="logoBtn" src={logo} alt="logo"/> }
+          </NavLink></li>
+        <li className={`profile-btn ${isMenuActive? 'active' : ''}`}>
+          <NavLink to={`/profile`} onClick={() => setIsMenuActive(false)}>
+            <CgProfile color="#3d3d3d"/>
+          </NavLink>
+        </li>
         <button className={`rounded-btn ${isMenuActive? 'active' : ''}`} onClick ={toggleMenu}>
           {isMenuActive ? <GrClose color="#FBA6A6"/> : <GrMenu/>}
         </button>
           <ul className={`menu ${isMenuActive ? 'active' : ''}`}>
-            <li className="menu-item-1"><Link to="/mates" style={{ textDecoration: 'none', color:"#3d3d3d"}}>Mates</Link></li>
+          <li className="menu-item-1"><Link to="/mates" style={{ textDecoration: 'none', color:"#3d3d3d"}} onClick={() => setIsMenuActive(false)}>Mates</Link></li>
             <li className="menu-item">Menu Item 2</li>
             <li className="menu-item">Menu Item 3</li>
           </ul>

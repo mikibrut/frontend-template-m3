@@ -3,6 +3,7 @@ import toast from 'react-hot-toast';
 import { useAuth } from '../../hooks/useAuth';
 import { useNavigate, Link } from 'react-router-dom';
 import authService from '../../services/authService';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 export default function Login() {
   const { storeToken, authenticateUser, isLoggedIn } = useAuth(); 
@@ -11,6 +12,7 @@ export default function Login() {
     password: ''
   });
   const [errorMessage, setErrorMessage] = useState(undefined);
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -39,6 +41,10 @@ export default function Login() {
     }
   }
 
+  const handleTogglePassword = () => {
+    setShowPassword(prev => !prev);
+  }
+
   useEffect(() => {
     // When the component first renders, check if user is already logged in and redirects
     if (isLoggedIn) {
@@ -52,13 +58,18 @@ export default function Login() {
       <form onSubmit={handleSubmit}>
         <label>Email</label>
         <input required type="email" name="email" value={user.email} onChange={handleChange} />
-        <label>Password</label>
-        <input required type="password" name="password" value={user.password} onChange={handleChange} />
+        <label>Password </label>
+        <div className="password-input">
+          <input required type={showPassword ? 'text' : 'password'} name="password" value={user.password} onChange={handleChange} />
+          <button className="eye-btn" type="button" onClick={handleTogglePassword}>
+            {showPassword ? <FaEyeSlash /> : <FaEye />}
+          </button>
+        </div>
         {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
         <button className="btn" type="submit">
           <span className="front">Log in</span> </button>
       </form>
-      <Link to="/signup">Create an account</Link>
+      <Link style={{ marginTop: '20px', textDecoration: 'none', color: '#3d3d3d', fontSize: '20px', fontWeight: 'bold' }} to="/signup">Create an account</Link>
     </div>
   )
 }
