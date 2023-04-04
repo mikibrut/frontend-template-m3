@@ -1,10 +1,7 @@
 .navbar {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
     height: 60px;
-    width: 100%;
+    width: 390px;
     background-color: transparent;
     display: flex;
     justify-content: space-between;
@@ -89,12 +86,12 @@ li {
   }
 
   .menu-item-1:hover {
-    background-color: #FFE4E4;
+    background-color: #FB8653;
     border-radius: 20px;
   }
 
   .menu-item:hover {
-    background-color: #FFE4E4;
+    background-color: #FB8653;
     border-radius: 20px;
   }
   
@@ -119,7 +116,7 @@ li {
     align-items: auto;
     justify-content: auto;
     border-radius: 50%;
-    background-color: #FFE4E4;
+    background-color: #FFF4F4;
     color: #3d3d3d;
     font-size: 40px;
     

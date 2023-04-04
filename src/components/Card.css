@@ -1,9 +1,10 @@
-.card {
+/* .card {
     background-color: #fff;
     border-radius: 25px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
-    width: 80%;
-    max-width: 90%;
+    box-shadow: 0 2px 4px #3d3d3d;
+    width: 250px;
+    height: 325px;
+    max-height: fit-content;
     text-align: center;
     padding: 10px;
     margin-top: 10px;
@@ -16,10 +17,10 @@
   
   .card img {
     border-radius: 50%;
-    height: 150px;
-    width: 150px;
+    height: 175px;
+    width: 175px;
     object-fit: cover;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
   
   .card ul {
@@ -32,4 +33,10 @@
   .card li {
     margin-bottom: 10px;
     font-size: 16px;
-  }
+  } */
+
+
+  /* p {
+    inline-size: 200px;
+    overflow:hidden;
+  } */
