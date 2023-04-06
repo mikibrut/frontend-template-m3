@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import mateService from '../../services/mateService';
-import CardMate from '../../components/CardMate';
+import advertService from '../../services/advertService';
+import CardAdvert from '../../components/CardAdvert';
 import GoBack from '../../components/GoBack';
 import { Link } from 'react-router-dom';
 import { GrAdd } from 'react-icons/gr';
@@ -8,16 +8,16 @@ import { GrAdd } from 'react-icons/gr';
 
 
 
-function Mates() {
-  const [mates, setMates] = useState([]);
+function Adverts() {
+  const [adverts, setAdverts] = useState([]);
   const [loading, setLoading] = useState(true);
  
 
 
-  const getMates = async () => {
+  const getAdverts = async () => {
     try {
-      const response = await mateService.getMates();
-      setMates(response)
+      const response = await advertService.getAdverts();
+      setAdverts(response)
       setLoading(false)
     } catch (error) {
       console.error(error)
@@ -25,7 +25,7 @@ function Mates() {
   }
 
   useEffect(() => {
-    getMates()
+    getAdverts()
   }, [])
 
   return (
@@ -33,11 +33,11 @@ function Mates() {
             {loading && <p>Loading...</p>}
             {!loading &&
                 (<div>
-                    {mates.map(elem =><CardMate key={elem._id} mate={elem}/>)}
+                    {adverts.map(elem =><CardAdvert key={elem._id} advert={elem}/>)}
                 </div>)
             }
         
-        <Link className="add-btn" style={{ textDecoration: 'none', color:"#3d3d3d", fontSize: "50px", fontWeight: "bold"}} to= "/mates/create">
+        <Link className="add-btn" style={{ textDecoration: 'none', color:"#3d3d3d", fontSize: "50px", fontWeight: "bold"}} to= "/adverts/create">
           <GrAdd/>
         </Link>   
           
@@ -46,4 +46,4 @@ function Mates() {
   )
 }
 
-export default Mates
+export default Adverts

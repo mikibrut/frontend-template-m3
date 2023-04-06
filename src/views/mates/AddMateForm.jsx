@@ -37,7 +37,6 @@ export default function AddMateForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('submitting')
     try {
       const addedMate = await mateService.createMate(newMate);
       navigate(`/mates/${addedMate._id}`)

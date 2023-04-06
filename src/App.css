@@ -5,13 +5,13 @@
   margin-right: auto;
 } */
 
-/* 
 body{
   background-color: #FFE1AD;
 }
 
+/*------LAYOUT BODY-------*/
 
-.container {
+div.app-body {
   position: absolute;
   width: 94%;
   margin: 80px 10px 10px 10px;
@@ -27,6 +27,67 @@ body{
   color: #3d3d3d;
   overflow-y: scroll;
 }
+
+
+/*-----HOME------*/
+
+.home-body{
+  align-self: center;
+  justify-content: center;
+  font-family: 'Gravitas One', cursive;
+  font-size: 2vh;
+  color: #3d3d3d;
+  text-align: center;
+}
+
+.home-noLog-body{
+  position: absolute;
+  background-image: url(img/backgroundPublic.png);
+  z-index: 0;
+}
+
+.home-message{
+  font-family: 'Gravitas One', cursive;
+  font-size: 3vh;
+  color: #3d3d3d;
+  text-align: center;
+}
+
+.inner-cont {
+  position: relative;
+  margin-top: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+/*------HOME SLIDER----*/
+
+/* .slider-container {
+  max-width: 90%;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  overflow-x: scroll;
+  border-radius: 25px;
+  background-color: transparent;
+}
+
+.slider {
+  display: flex;
+  overflow-x:visible;
+  scroll-behavior: smooth;
+}
+
+.slide {
+  flex-shrink: 0;
+  width: 300px;
+  margin-right: 1rem;
+  padding-left: 10px;
+  font-size: 16px;
+} */
+
+
 
 form {
   width: 80%;
@@ -83,65 +144,6 @@ input {
 }
 
 
-
-.slider-container {
-  width: 70%;
-  margin-left: 60px;
-  font-family: 'Poppins', sans-serif;
-  font-size: 16px;
-  overflow-x: scroll;
-  border-radius: 25px;
-  background-color: transparent;
-}
-
-.slider {
-  display: flex;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-}
-
-.slide {
-  flex-shrink: 0;
-  width: 300px;
-  margin-right: 1rem;
-  padding-left: 10px;
-  font-size: 16px;
-}
-.home-body{
-  display: block;
-  align-self: center;
-  justify-content: center;
-  margin-top: 100px;
-  font-family: 'Gravitas One', cursive;
-  font-size: 2vh;
-  color: #3d3d3d;
-  text-align: center;
-}
-
-
-.home-noLog-body{
-  position: absolute;
-  background-image: url(img/backgroundPublic.png);
-  z-index: 0;
-}
-
-.home-message{
-  font-family: 'Gravitas One', cursive;
-  font-size: 3vh;
-  color: #3d3d3d;
-  text-align: center;
-}
-
-
-.inner-cont {
-  position: relative;
-  margin-top: 400px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-}
-
 .password-input{
   display: flex;
   gap: 10px;
@@ -178,4 +180,4 @@ input {
   color: #3d3d3d;
   font-size: 25px;
   z-index: 1;
-} */
+}

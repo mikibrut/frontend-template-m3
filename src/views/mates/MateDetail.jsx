@@ -6,14 +6,14 @@ import { Link } from 'react-router-dom';
 import GoBack from '../../components/GoBack';
 
 export default function MateDetail() {
-  const { id } = useParams();
+  const { mateId } = useParams();
   const { user } = useAuth();
   const [mate, setMate] = useState(null);
   const navigate = useNavigate();
   
   const getMate = async () => {
     try {
-      const mate = await mateService.getMate(id);
+      const mate = await mateService.getMate(mateId);
       setMate(mate);  
     } catch (error) {
       console.error(error);
@@ -27,7 +27,7 @@ export default function MateDetail() {
 
   const handleDelete = async () => {
     try {
-      await mateService.deleteMate(id);
+      await mateService.deleteMate(mateId);
       navigate('/');
     } catch (error) {
       console.error(error);
@@ -50,8 +50,7 @@ export default function MateDetail() {
             </ul>
             {user._id == mate.creator._id &&
             <>
-            {console.log(user._id, mate.creator)}
-              <button><Link to={`/mates/${mate._id}`}>Edit</Link></button>
+              <button><Link to={`/mates/edit/${mate._id}`}>Edit</Link></button>
               <button onClick={handleDelete}>Delete</button>
             </>
             }

@@ -54,7 +54,7 @@ export default function Login() {
   }, [isLoggedIn])
 
   return (
-    <div className="container">
+    <div className="app-body">
       <form onSubmit={handleSubmit}>
         <label>Email</label>
         <input required type="email" name="email" value={user.email} onChange={handleChange} />

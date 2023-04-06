@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import CardMate from '../components/CardMate';
 import CardBand from '../components/CardBand';
 import mateService from '../services/mateService';
@@ -98,24 +99,26 @@ export default function Home() {
       <>{loading ? (
         <p>Loading...</p>
         ) : (
-        <div className="home-body">
-          <div className="last-items">
-            <h2>Last Added Adverts</h2>
-            {/* Render the last added adverts in a slider */}
+          <div className='app-body'>
+            <div className="home-body">
+              <div className="last-items">
+                <h2>Last Added Adverts</h2>
+                {/* Render the last added adverts in a slider */}
+              </div>
+              <div className="last-items">
+                <h2>Last Added Mates</h2>
+                {renderLastMates()}
+              </div>
+              <div className="last-items">
+                <h2>Last Added Bands</h2>
+                {renderLastBands()}
+              </div>
+              <div className="last-items">
+                <h2>Last Added Places</h2>
+                {/* Render the last added places in a slider */}
+              </div>
+            </div>
           </div>
-          <div className="last-items">
-            <h2>Last Added Mates</h2>
-            {renderLastMates()}
-          </div>
-          <div className="last-items">
-            <h2>Last Added Bands</h2>
-            {renderLastBands()}
-          </div>
-          <div className="last-items">
-            <h2>Last Added Places</h2>
-            {/* Render the last added places in a slider */}
-          </div>
-        </div>
       )}
       </>
       :

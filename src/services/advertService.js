@@ -5,10 +5,18 @@ class AdvertService {
     this.api = axios.create({
       baseURL: `${process.env.REACT_APP_BACKEND_URL}/adverts`
     });
+    
+    this.api.interceptors.request.use(config => {
+        const storedToken = localStorage.getItem('authToken');
+        if (storedToken) {
+          config.headers = { Authorization: `Bearer ${storedToken}` };
+        }
+        return config;
+      });
   }
 
   getAdverts() {
-    return this.api.get('/').then(({ data }) => data).catch(err => console.error(err))
+    return this.api.get('/').then(({ data }) => data);
   }
 
   getAdvert(id) {

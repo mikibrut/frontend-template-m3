@@ -23,18 +23,20 @@ class MateService {
     return this.api.get(`/${id}`).then(({ data }) => data);
   }
 
+  getMatesByCreator(id) {
+    return this.api.get(`/creator/${id}`).then(({ data }) => data);
+  }
+
   createMate(body) {
-    console.log('Service also in')
     return this.api.post('/create', body).then(({ data }) => data);
   }
 
   editMate(id, body) {
-    console.log('Service also in')
     return this.api.put(`/edit/${id}`, body).then(({ data }) => data);
   }
 
   deleteMate(id) {
-    return this.api.delete(`/${id}`).then(({ data }) => data).catch(err => console.error(err))
+    return this.api.delete(`/${id}`).then(({ data }) => data);
   }
 
 
