@@ -10,7 +10,8 @@ export default function EditMate() {
     image: '',
     genre: '',
     musicalGenre: [],
-    musicalInstrument: []
+    musicalInstrument: [],
+    location:''
   });
   const [error, setError] = useState(false)
   const navigate = useNavigate();
@@ -50,6 +51,7 @@ export default function EditMate() {
     })
   }
   
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -61,7 +63,7 @@ export default function EditMate() {
   }
 
   return (
-    <div>
+    <div className='app-body'>
       <form onSubmit={handleSubmit}>
         {error && <p>Something went wrong. Couldn't find your MATE</p>}
         <div className="checkbox-container">
@@ -91,6 +93,8 @@ export default function EditMate() {
                 <input type="checkbox" name="musicalGenre" value={musicalGenre} checked={mate.musicalGenre.includes(musicalGenre)} onChange={handleCheckbox} />
             </div>
           ))}
+          <label>Location</label>
+            <input type="text" name="location" value={mate.location} onChange={handleChange} />
 
         <button className="btn" type="submit">
           <span className="front">Save changes</span> </button>

@@ -29,7 +29,7 @@ function Bands() {
   }, [])
 
   return (
-    <>
+    <div className='app-body'>
             {loading && <p>Loading...</p>}
             {!loading &&
                 (<div className="container">
@@ -42,7 +42,7 @@ function Bands() {
         </Link>   
           
         <GoBack/>
-    </>
+    </div>
   )
 }
 

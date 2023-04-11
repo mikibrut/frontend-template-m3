@@ -24,11 +24,11 @@ class AdvertService {
   }
 
   createAdvert(body) {
-    return this.api.post('/', body).then(({ data }) => data).catch(err => console.error(err))
+    return this.api.post('/create', body).then(({ data }) => data).catch(err => console.error(err))
   }
 
   editAdvert(id, body) {
-    return this.api.put(`/${id}`, body).then(({ data }) => data).catch(err => console.error(err))
+    return this.api.put(`/edit/${id}`, body).then(({ data }) => data).catch(err => console.error(err))
   }
 
   deleteAdvert(id) {

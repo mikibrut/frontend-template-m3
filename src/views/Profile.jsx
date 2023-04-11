@@ -9,7 +9,7 @@ export default function Profile() {
 
   return (
     <>
-    <div className="container">
+    <div className="app-body">
        {user && 
        <div>
        <p>Hello {user.username}</p> 

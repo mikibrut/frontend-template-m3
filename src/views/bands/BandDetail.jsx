@@ -43,17 +43,23 @@ export default function BandDetail() {
 
   return (
     <>
-      <div className="container">
+      <div className="app-body">
         <h2>Band details</h2>
           {band && <div className='card'>
             <h2>{band.bandName.charAt(0).toUpperCase() + band.bandName.slice(1)}</h2>
-            <button><Link to={`/mates/${mate._id}`}>{band.creator.username.charAt(0).toUpperCase() + band.creator.username.slice(1)}</Link></button>
+            
             <img src={band.image} alt={band.bandName} />
             <ul>
                 <li>Musical genre: {band.musicalGenre.map(musicalGenre => musicalGenre.charAt(0).toUpperCase() + musicalGenre.slice(1).toLowerCase()).join(', ')}</li>
                 <li>Bio: {band.bio.charAt(0).toUpperCase() + band.bio.slice(1)}</li>
                 {/* <li>Links: {band.creator.email}</li> */}
+                <li>Location: {band.location.charAt(0).toUpperCase() + band.location.slice(1)} </li>
                 <li>Contact: {band.creator.email}</li>
+                <li>
+                  <button>
+                    <Link to={`/mates/${mate._id}`}>{band.creator.username.charAt(0).toUpperCase() + band.creator.username.slice(1)}</Link>
+                  </button>
+                </li>
             </ul>
             {user._id == band.creator._id &&
             <>

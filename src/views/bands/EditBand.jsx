@@ -53,7 +53,7 @@ export default function EditBand() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await bandService.editBand(bandId, band);
+      await bandService.editBand(bandId, band);
       navigate(`/bands/${bandId}`)
     } catch (error) {
       console.error(error)

@@ -23,6 +23,10 @@ class BandService {
     return this.api.get(`/${id}`).then(({ data }) => data);
   }
 
+  getBandsByCreator(id) {
+    return this.api.get(`/creator/${id}`).then(({ data }) => data);
+  }
+
   createBand(body) {
     return this.api.post('/create', body).then(({ data }) => data);
   }

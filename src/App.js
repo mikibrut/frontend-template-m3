@@ -18,6 +18,14 @@ import BandDetail from './views/bands/BandDetail';
 import AddBandForm from './views/bands/AddBandForm';
 import EditBand from './views/bands/EditBand';
 import Adverts from './views/adverts/Adverts';
+import AdvertDetail from  './views/adverts/AdvertDetail';
+import EditAdvert from './views/adverts/EditAdvert';
+import AddAdvertForm from './views/adverts/AddAdvertForm';
+import Places from './views/places/Places';
+import AddPlaceForm from './views/places/AddPlaceForm';
+import PlaceDetail from './views/places/PlaceDetail';
+import EditPlace from './views/places/EditPlace';
+import SelectRole from './views/auth/SelectRole';
 
 function App() {
   return (
@@ -34,9 +42,17 @@ function App() {
           <Route path="/bands/create" element={<IsPrivate><AddBandForm /></IsPrivate>} />
           <Route path="/bands/:bandId" element={<IsPrivate><BandDetail /></IsPrivate>} />
           <Route path="/bands/edit/:bandId" element={<IsPrivate><EditBand /></IsPrivate>} />
+          <Route path="/places" element={<Places/>} />
+          <Route path="/places/create" element={<IsPrivate><AddPlaceForm /></IsPrivate>} />
+          <Route path="/places/:placeId" element={<IsPrivate><PlaceDetail /></IsPrivate>} />
+          <Route path="/places/edit/:placeId" element={<IsPrivate><EditPlace /></IsPrivate>} />
           <Route path="/adverts" element={<Adverts/>} />
+          <Route path="/adverts/:advertId" element={<IsPrivate><AdvertDetail /></IsPrivate>} />
+          <Route path="/adverts/edit/:advertId" element={<IsPrivate><EditAdvert /></IsPrivate>} />
+          <Route path="/adverts/create" element={<IsPrivate><AddAdvertForm /></IsPrivate>} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
+          {/* <Route path="/select-role" element={<SelectRole />} /> */}
           <Route path="/profile" element={<IsPrivate><Profile /></IsPrivate>} />
           <Route path="/error" element={<ErrorPage />} />
           <Route path="*" element={<NotFound />} />

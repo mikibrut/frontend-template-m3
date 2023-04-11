@@ -13,8 +13,8 @@ export default function MateDetail() {
   
   const getMate = async () => {
     try {
-      const mate = await mateService.getMate(mateId);
-      setMate(mate);  
+      const response = await mateService.getMate(mateId);
+      setMate(response);  
     } catch (error) {
       console.error(error);
     }
@@ -36,7 +36,7 @@ export default function MateDetail() {
 
   return (
     <>
-      <div className="container">
+      <div className="app-body">
         <h2>Mate details</h2>
           {mate && <div className='card'>
             <p>{mate.creator.username.charAt(0).toUpperCase() + mate.creator.username.slice(1)}</p>

@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import mateService from '../../services/mateService';
+import authService from '../../services/authService';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../hooks/useAuth';
 import GoBack from '../../components/GoBack';
 
 
@@ -14,6 +16,7 @@ export default function AddMateForm() {
   }
   const [newMate, setNewMate] = useState(initialState);
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   const handleChange = (e) => {
     setNewMate(prev => {
@@ -38,6 +41,7 @@ export default function AddMateForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      // await authService.addUserRole(user._id, 'mate');
       const addedMate = await mateService.createMate(newMate);
       navigate(`/mates/${addedMate._id}`)
     } catch (error) {
@@ -45,8 +49,12 @@ export default function AddMateForm() {
     }
   }
 
+  useEffect(() => {
+    console.log(user.userRole)
+  }, [])
+  
   return (
-    <div>
+    <div className='app-body'>
       <form onSubmit={handleSubmit}>
         <div className="checkbox-container">
         <label>Mate's Types</label>
@@ -56,7 +64,7 @@ export default function AddMateForm() {
               <input type="checkbox" name="type" value={type} checked={newMate.type.includes(type)} onChange={handleCheckbox} />
             </div>
           ))}
-        </div>
+       
         <label>Mate's image</label>
         <input type="text" name="image" value={newMate.image} onChange={handleChange} />
         <label>Mate's genre</label>
@@ -75,7 +83,10 @@ export default function AddMateForm() {
               <input type="checkbox" name="musicalGenre" value={musicalGenre} checked={newMate.musicalGenre.includes(musicalGenre)} onChange={handleCheckbox} />
             </div>
           ))}
-
+        <label>Location</label>
+              <input type="text" name="location" value={newMate.location} onChange={handleChange} />
+        
+      </div>
         <button className="btn" type="submit">
           <span className="front">Create Mate</span> </button>
       </form>

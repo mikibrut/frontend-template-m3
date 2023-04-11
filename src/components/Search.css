@@ -1,0 +1,32 @@
+.search-container {
+  position: relative;
+  width: 200px;
+}
+
+.search-button {
+  position: fixed;
+  top: 100px;
+  right: 30px;
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: none;
+  background-color: #FFF4F4;
+  color: #3d3d3d;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.search-button > svg {
+  color: #3d3d3d;
+  font-size: 2em;
+}
+
+input[type='text'] {
+  height: auto;
+  border: 2px solid #3d3d3d;
+  background-color: #FFF4F4;
+}

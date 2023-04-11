@@ -14,12 +14,12 @@ body{
 div.app-body {
   position: absolute;
   width: 94%;
-  margin: 80px 10px 10px 10px;
+  margin: 100px 10px 10px 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid #3d3d3d;
+  /* border: 1px solid #3d3d3d; */
   align-self: center;
   font-family: 'Poppins', sans-serif;
   font-weight: bold;
@@ -90,9 +90,9 @@ div.app-body {
 
 
 form {
-  width: 80%;
-  position: relative;
-  margin-top: 100px;
+  font-family: 'Poppins', sans-serif;
+  max-width: 80%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -103,20 +103,43 @@ form {
 }
 
 label {
-  width: 90%;
   font-size: 16px;
   font-weight: bold;
   margin-bottom: 10px;
 }
 
 input {
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
   width: 90%;
   padding: 10px;
   border-radius: 25px;
   border: 2px solid #3d3d3d;
   margin-bottom: 20px;
-
 }
+
+textarea {
+  width: 90%;
+  height: 150px;
+  padding: 10px;
+  border-radius: 25px;
+  border: 2px solid #3d3d3d;
+  margin-bottom: 20px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+}
+
+select {
+  width: 90%;
+  padding: 10px;
+  border-radius: 25px;
+  border: 2px solid #3d3d3d;
+  margin-bottom: 20px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+}
+
+
 
 .btn {
   margin-top: 10px;
@@ -165,6 +188,8 @@ input {
   font-size: 30px;
 }
 
+/*------ADD BUTTON--------*/
+
 .add-btn {
   position: fixed;
   bottom: 25px;
@@ -180,4 +205,4 @@ input {
   color: #3d3d3d;
   font-size: 25px;
   z-index: 1;
-}
+} 
