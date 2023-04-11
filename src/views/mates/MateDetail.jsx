@@ -4,6 +4,7 @@ import { useAuth } from '../../hooks/useAuth';
 import mateService from '../../services/mateService';
 import { Link } from 'react-router-dom';
 import GoBack from '../../components/GoBack';
+import { FaPen, FaTrash } from 'react-icons/fa';
 
 export default function MateDetail() {
   const { mateId } = useParams();
@@ -37,21 +38,22 @@ export default function MateDetail() {
   return (
     <>
       <div className="app-body">
-        <h2>Mate details</h2>
-          {mate && <div className='card'>
-            <p>{mate.creator.username.charAt(0).toUpperCase() + mate.creator.username.slice(1)}</p>
+        <h2 className="title">Mate details</h2>
+          {mate && <div className='card-detail'>
+            <h1>{mate.creator.username.charAt(0).toUpperCase() + mate.creator.username.slice(1)}</h1>
             <img src={mate.image} alt={mate.creator.username} />
             <ul>
                 <li>Mate type: {mate.type.map(type => type.charAt(0).toUpperCase() + type.slice(1).toLowerCase()).join(', ')}</li>
                 <li>Musical genre: {mate.musicalGenre.map(musicalGenre => musicalGenre.charAt(0).toUpperCase() + musicalGenre.slice(1).toLowerCase()).join(', ')}</li>
                 <li>Instrument: {mate.musicalInstrument.map(instrument => instrument.charAt(0).toUpperCase() + instrument.slice(1).toLowerCase()).join(', ')}</li>
+                <li>Location: {mate.location.charAt(0).toUpperCase() + mate.location.slice(1)}</li>
                 <li>Genre: {mate.genre.charAt(0).toUpperCase() + mate.genre.slice(1)}</li>
                 <li>Contact: {mate.creator.email}</li>
             </ul>
             {user._id == mate.creator._id &&
             <>
-              <button><Link to={`/mates/edit/${mate._id}`}>Edit</Link></button>
-              <button onClick={handleDelete}>Delete</button>
+              <button className="edit-delete-btn"><Link  style={{ textDecoration: 'none', color:"#3d3d3d"}}  to={`/mates/edit/${mate._id}`}><FaPen/></Link></button>
+              <button className="edit-delete-btn" onClick={handleDelete}><FaTrash/></button>
             </>
             }
           </div>}

@@ -25,11 +25,10 @@ function Mates() {
       console.error(error)
     }
   }
+
   const handleSearch = (value) => {
-    console.log('Dad ', value)
     setSearchValue(value);
   }
-
 
   useEffect(() => {
     getMates()
@@ -43,10 +42,13 @@ function Mates() {
             <Search handleSearchValue={handleSearch} />
           </div>
           <div>
-              {mates.filter(elem => elem.location.toLowerCase().includes(searchValue.toLowerCase()))
-              .map(elem => {
-                return <CardMate key={elem._id} mate={elem}/>
-              })}
+          {mates.filter(elem => {
+            const locationMatch = elem.location.toLowerCase().includes(searchValue.toLowerCase());
+            const typeMatch = elem.type.some(type => type.toLowerCase().includes(searchValue.toLowerCase()));
+            return locationMatch || typeMatch;
+          }).map(elem => {
+            return <CardMate key={elem._id} mate={elem}/>
+          })}
           </div>
         <Link className="add-btn" style={{ textDecoration: 'none', color:"#3d3d3d", fontSize: "50px", fontWeight: "bold"}} to= "/mates/create">
           <GrAdd/>

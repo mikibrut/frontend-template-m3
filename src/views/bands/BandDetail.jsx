@@ -5,6 +5,7 @@ import bandService from '../../services/bandService';
 import mateService from '../../services/mateService';
 import { Link } from 'react-router-dom';
 import GoBack from '../../components/GoBack';
+import { FaPen, FaTrash } from 'react-icons/fa';
 
 export default function BandDetail() {
   const { bandId } = useParams();
@@ -44,8 +45,8 @@ export default function BandDetail() {
   return (
     <>
       <div className="app-body">
-        <h2>Band details</h2>
-          {band && <div className='card'>
+      <h2 className="title">Mate details</h2>
+          {band && <div className='card-detail'>
             <h2>{band.bandName.charAt(0).toUpperCase() + band.bandName.slice(1)}</h2>
             
             <img src={band.image} alt={band.bandName} />
@@ -63,8 +64,8 @@ export default function BandDetail() {
             </ul>
             {user._id == band.creator._id &&
             <>
-              <button><Link to={`/bands/edit/${band._id}`}>Edit</Link></button>
-              <button onClick={handleDelete}>Delete</button>
+              <button className="edit-delete-btn"><Link  style={{ textDecoration: 'none', color:"#3d3d3d"}}  to={`/bands/edit/${band._id}`}><FaPen/></Link></button>
+              <button className="edit-delete-btn" onClick={handleDelete}><FaTrash/></button>
             </>
             }
           </div>}

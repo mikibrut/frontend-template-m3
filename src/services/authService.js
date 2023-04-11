@@ -23,10 +23,6 @@ class AuthService {
     return this.api.post('/login', user).then(({ data }) => data);
   }
 
-  // addUserRole(userId, role) {
-  //   return this.api.patch(`/addUserRole/${userId}`, { role }).then(({ data }) => data);
-  // }
-
   me() {
     return this.api.get('/me').then((response) => response.data);
   }

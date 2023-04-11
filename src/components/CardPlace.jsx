@@ -12,6 +12,7 @@ function CardPlace(props) {
         <h2>{place.placeName.charAt(0).toUpperCase() + place.placeName.slice(1)}</h2>
         <img src={place.image} alt={place.creator.username} /> 
         <p>Place type: {place.type.map(type => type.charAt(0).toUpperCase() + type.slice(1).toLowerCase()).join(', ')}</p>
+        <p>Location: {place.location.charAt(0).toUpperCase() + place.location.slice(1)}</p>
       </Link> 
     </div>
       

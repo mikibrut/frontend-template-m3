@@ -4,6 +4,7 @@ import { useAuth } from '../../hooks/useAuth';
 import placeService from '../../services/placeService';
 import { Link } from 'react-router-dom';
 import GoBack from '../../components/GoBack';
+import { FaPen, FaTrash } from 'react-icons/fa';
 
 export default function PlaceDetail() {
   const { placeId } = useParams();
@@ -37,8 +38,8 @@ export default function PlaceDetail() {
   return (
     <>
       <div className="app-body">
-        <h2>Place details</h2>
-          {place && <div className='card'>
+      <h2 className="title">Place details</h2>
+          {place && <div className='card-detail'>
             <p>{place.placeName.charAt(0).toUpperCase() + place.placeName.slice(1)}</p>
             <img src={place.image} alt={place.placeName} />
             <ul>
@@ -49,9 +50,9 @@ export default function PlaceDetail() {
             </ul>
             {user._id == place.creator._id &&
             <>
-              <button><Link to={`/places/edit/${place._id}`}>Edit</Link></button>
-              <button onClick={handleDelete}>Delete</button>
-            </>
+            <button className="edit-delete-btn"><Link  style={{ textDecoration: 'none', color:"#3d3d3d"}}  to={`/places/edit/${place._id}`}><FaPen/></Link></button>
+            <button className="edit-delete-btn" onClick={handleDelete}><FaTrash/></button>
+          </>
             }
           </div>}
       </div>

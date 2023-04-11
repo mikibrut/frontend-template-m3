@@ -12,6 +12,7 @@ function CardBand(props) {
         <h2>{band.bandName.charAt(0).toUpperCase() + band.bandName.slice(1)}</h2>
         <img src={band.image} alt={band.creator} /> 
         <p>Band musical genre: {band.musicalGenre.map(musicalGenre => musicalGenre.charAt(0).toUpperCase() + musicalGenre.slice(1).toLowerCase()).join(', ')}</p>
+        <p>Location: {band.location.charAt(0).toUpperCase() + band.location.slice(1)} </p>
       </Link> 
     </div>
       

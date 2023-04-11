@@ -54,7 +54,7 @@ export default function AddAdvertForm() {
                 ))}
         </select>
         <button className="btn" type="submit">
-            <span className="front">Create Band</span> </button>
+            <span className="front">Create Add</span> </button>
       </form>
       <GoBack/>
     </div>  

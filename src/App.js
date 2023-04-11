@@ -25,7 +25,7 @@ import Places from './views/places/Places';
 import AddPlaceForm from './views/places/AddPlaceForm';
 import PlaceDetail from './views/places/PlaceDetail';
 import EditPlace from './views/places/EditPlace';
-import SelectRole from './views/auth/SelectRole';
+import AdvertProtect from './components/AdvertProtect';
 
 function App() {
   return (
@@ -49,10 +49,9 @@ function App() {
           <Route path="/adverts" element={<Adverts/>} />
           <Route path="/adverts/:advertId" element={<IsPrivate><AdvertDetail /></IsPrivate>} />
           <Route path="/adverts/edit/:advertId" element={<IsPrivate><EditAdvert /></IsPrivate>} />
-          <Route path="/adverts/create" element={<IsPrivate><AddAdvertForm /></IsPrivate>} />
+          <Route path="/adverts/create" element={<AdvertProtect><AddAdvertForm /></AdvertProtect>} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
-          {/* <Route path="/select-role" element={<SelectRole />} /> */}
           <Route path="/profile" element={<IsPrivate><Profile /></IsPrivate>} />
           <Route path="/error" element={<ErrorPage />} />
           <Route path="*" element={<NotFound />} />

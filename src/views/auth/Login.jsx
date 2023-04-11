@@ -27,25 +27,20 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await authService.login(user);
+      const response = await authService.login(user)
       if (response.authToken) {
         storeToken(response.authToken);
         authenticateUser();
-        const currentUser = await authService.me();
-        if (!currentUser.userRole || currentUser.userRole.length === 0) {
-          navigate('/select-role');
-        } else {
-          navigate('/');
-        }
-        toast.success('Welcome back!');
+        navigate('/');
+        toast.success('Welcome back!')
       } else {
-        setErrorMessage('Unable to authenticate user');
+        setErrorMessage('Unable to authenticate user')
       }
     } catch (error) {
       setErrorMessage('Unable to authenticate user');
     }
   }
-  
+
   const handleTogglePassword = () => {
     setShowPassword(prev => !prev);
   }

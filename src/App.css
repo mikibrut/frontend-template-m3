@@ -9,6 +9,10 @@ body{
   background-color: #FFE1AD;
 }
 
+.title{
+  text-align: center;
+}
+
 /*------LAYOUT BODY-------*/
 
 div.app-body {
@@ -19,7 +23,6 @@ div.app-body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* border: 1px solid #3d3d3d; */
   align-self: center;
   font-family: 'Poppins', sans-serif;
   font-weight: bold;
@@ -87,6 +90,45 @@ div.app-body {
   font-size: 16px;
 } */
 
+/*-----CARD DETAIL----*/
+
+.card-detail {
+  background-color: #FFF4F4;
+  border-radius: 25px;
+  box-shadow: 0 2px 4px #3d3d3d;
+  width: 250px;
+  height: 100%;
+  max-height: fit-content;
+  text-align: center;
+  padding: 10px;
+  margin: 10px;
+}
+
+.card-detail h3 {
+  font-size: 24px;
+  margin-top: 0;
+}
+
+.card-detail img {
+  border-radius: 25px;
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.card-detail ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.card-detail li {
+  margin-bottom: 10px;
+  font-size: 16px;
+} 
+
 
 
 form {
@@ -96,7 +138,7 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #fff;
+  background-color: #FFF4F4;
   padding: 20px;
   border-radius: 25px;
   border: 2px solid #3d3d3d
@@ -206,3 +248,17 @@ select {
   font-size: 25px;
   z-index: 1;
 } 
+
+.edit-delete-btn{
+  width: 40px;
+  height: 40px;
+  margin: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: none;
+  background-color: #FFF4F4;
+  color: #3d3d3d;
+  font-size: 25px;
+}
