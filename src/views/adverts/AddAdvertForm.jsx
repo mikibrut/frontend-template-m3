@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import advertService from '../../services/advertService';
 import { useNavigate } from 'react-router-dom';
 import GoBack from '../../components/GoBack';
+import toast from 'react-hot-toast';
 
 
 export default function AddAdvertForm() {
@@ -27,9 +28,11 @@ export default function AddAdvertForm() {
     e.preventDefault();
     try {
       const addedAdvert = await advertService.createAdvert(newAdvert);
-      navigate(`/adverts/${addedAdvert._id}`)
+      toast.success('Addvert created successfully!');
+      navigate(`/adverts/${addedAdvert._id}`);
     } catch (error) {
       console.error(error)
+      toast.error('💩');
     }
   }
 
@@ -39,11 +42,11 @@ export default function AddAdvertForm() {
     <div className='app-body'>
       <form onSubmit={handleSubmit}>
         <label>Location</label>
-            <input type="text" name="location" value={newAdvert.location} onChange={handleChange} />
+            <input type="text" required="true" name="location" value={newAdvert.location} onChange={handleChange} />
         <label>Title</label>
-            <input type="text" name="title" value={newAdvert.title} onChange={handleChange} />
+            <input type="text" required="true" name="title" value={newAdvert.title} onChange={handleChange} />
         <label>Message</label>
-            <input type="text" name="message" value={newAdvert.message} onChange={handleChange} />
+            <input type="text" required="true" name="message" value={newAdvert.message} onChange={handleChange} />
         <label>Type:</label>
         <select className="select-style" name="type" value={newAdvert.type} onChange={handleChange}>
             <option value="">Select type</option>

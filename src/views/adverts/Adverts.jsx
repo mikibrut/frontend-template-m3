@@ -45,7 +45,8 @@ function Adverts() {
             {adverts.filter(elem => {
               const locationMatch = elem.location.toLowerCase().includes(searchValue.toLowerCase());
               const typeMatch = elem.type.toLowerCase().includes(searchValue.toLowerCase());
-              return locationMatch || typeMatch;
+              const titleMatch = elem.title.toLowerCase().includes(searchValue.toLowerCase());
+              return locationMatch || typeMatch || titleMatch;
             }).map(elem => {
               return <CardAdvert key={elem._id} advert={elem}/>
             })}
