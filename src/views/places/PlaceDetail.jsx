@@ -40,7 +40,7 @@ export default function PlaceDetail() {
       <div className="app-body">
       <h2 className="title">Place details</h2>
           {place && <div className='card-detail'>
-            <p>{place.placeName.charAt(0).toUpperCase() + place.placeName.slice(1)}</p>
+            <h2>{place.placeName.charAt(0).toUpperCase() + place.placeName.slice(1)}</h2>
             <img src={place.image} alt={place.placeName} />
             <ul>
                 <li>Place type: {place.type.map(type => type.charAt(0).toUpperCase() + type.slice(1).toLowerCase()).join(', ')}</li>

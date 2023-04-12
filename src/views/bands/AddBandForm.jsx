@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import bandService from '../../services/bandService';
 import { useNavigate } from 'react-router-dom';
 import GoBack from '../../components/GoBack';
+import toast from 'react-hot-toast';
 
 
 export default function AddBandForm() {
@@ -13,8 +14,10 @@ export default function AddBandForm() {
     location: ''
   }
   const [newBand, setNewBand] = useState(initialState);
+  const [image, setImage] = useState('');
   const navigate = useNavigate();
 
+  
   const handleChange = (e) => {
     setNewBand(prev => {
       return {
@@ -34,16 +37,35 @@ export default function AddBandForm() {
     })
   }
 
+  // ******** Cloudinary Upload files ********
+  const handleFileUpload = (e) => {
+    const uploadData = new FormData();
+    uploadData.append('image', e.target.files[0]);
+    bandService.uploadImage(uploadData)
+    .then(response => {
+      setImage(response.fileUrl);
+    })
+    .catch(err => console.log("Error while uploading the file: ", err));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const addedBand =  await bandService.createBand(newBand);
-      navigate(`/bands/${addedBand._id}`)
-    } catch (error) {
-      console.error(error)
+      const addedBand = await bandService.createBand({
+        ...newBand,
+        image: image
+      });
+      if(addedBand && addedBand._id){
+        toast.success('Band created successfully!');
+        setImage('');
+        navigate(`/bands/${addedBand._id}`);
+        setNewBand(initialState)
+      }
+    } catch (err) {
+      console.error(err)
+      toast.error('Something went wrong... 💩');
     }
-  }
+  };
 
   return (
     <div className='app-body'>
@@ -52,7 +74,7 @@ export default function AddBandForm() {
             <label>Band's Name</label>
                 <input type="text" name="bandName" value={newBand.bandName} onChange={handleChange} />
             <label>Band's Image</label>
-                <input type="text" name="image" value={newBand.image} onChange={handleChange} />
+                <input type="file" name="image" onChange={(e) => handleFileUpload(e)} />
             <label>Bio</label>
                 <textarea name="bio" value={newBand.bio} onChange={handleChange} />
             <label>Musical genre</label>

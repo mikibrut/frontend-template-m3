@@ -15,6 +15,13 @@ class MateService {
     });
   }
 
+
+  uploadImage = (file) => {
+    return this.api.post('/upload', file)
+      .then(res => res.data)
+      .catch(err => console.error(err))
+  };
+
   getMates() {
     return this.api.get('/').then(({ data }) => data);
   }

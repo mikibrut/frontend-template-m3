@@ -15,6 +15,12 @@ class PlaceService {
     });
   }
 
+  uploadImage = (file) => {
+    return this.api.post('/upload', file)
+      .then(res => res.data)
+      .catch(err => console.error(err))
+  };
+
   getPlaces() {
     return this.api.get('/').then(({ data }) => data);
   }

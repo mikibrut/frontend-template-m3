@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import placeService from '../../services/placeService';
-import authService from '../../services/authService';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../hooks/useAuth';
 import GoBack from '../../components/GoBack';
+import toast from 'react-hot-toast';
 
 
 export default function AddPlaceForm() {
@@ -15,6 +14,7 @@ export default function AddPlaceForm() {
     location: ''
   }
   const [newPlace, setNewPlace] = useState(initialState);
+  const [image, setImage] = useState('');
   const navigate = useNavigate();
 //   const { user } = useAuth();
 
@@ -37,17 +37,35 @@ export default function AddPlaceForm() {
     })
   }
 
+  // ******** Cloudinary Upload files ********
+  const handleFileUpload = (e) => {
+    const uploadData = new FormData();
+    uploadData.append("image", e.target.files[0]);
+    placeService.uploadImage(uploadData)
+    .then(response => {
+      setImage(response.fileUrl);
+    })
+    .catch(err => console.log("Error while uploading the file: ", err));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-    //   await authService.addUserRole(user._id, 'place');
-      const addedPlace = await placeService.createPlace(newPlace);
-      navigate(`/places/${addedPlace._id}`)
-    } catch (error) {
-      console.error(error)
+      const addedPlace = await placeService.createPlace({
+        ...newPlace,
+        image: image
+      });
+      if(addedPlace && addedPlace._id){
+        toast.success('Place created successfully!');
+        setImage('');
+        navigate(`/places/${addedPlace._id}`);
+        setNewPlace(initialState)
+      }
+    } catch (err) {
+      console.error(err)
+      toast.error('Something went wrong... 💩');
     }
-  }
+  };
   
   return (
     <div className='app-body'>
@@ -63,7 +81,7 @@ export default function AddPlaceForm() {
                     </div>
                 ))}
             <label>Place image</label>
-                <input type="text" name="image" value={newPlace.image} onChange={handleChange} />
+                <input type="file" name="image" onChange={(e) => handleFileUpload(e)} />
             <label>Description</label>
                 <textarea name="description" value={newPlace.description} onChange={handleChange} />
             <label>Location</label>

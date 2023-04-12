@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import mateService from '../../services/mateService';
-import authService from '../../services/authService';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../hooks/useAuth';
 import GoBack from '../../components/GoBack';
+import toast from 'react-hot-toast';
 
 
 export default function AddMateForm() {
@@ -15,9 +14,10 @@ export default function AddMateForm() {
     musicalGenre: []
   }
   const [newMate, setNewMate] = useState(initialState);
+  const [image, setImage] = useState('');
   const navigate = useNavigate();
-  const { user } = useAuth();
 
+   
   const handleChange = (e) => {
     setNewMate(prev => {
       return {
@@ -37,21 +37,35 @@ export default function AddMateForm() {
     })
   }
 
+// ******** Cloudinary Upload files ********
+  const handleFileUpload = (e) => {
+    const uploadData = new FormData();
+    uploadData.append("image", e.target.files[0]);
+    mateService.uploadImage(uploadData)
+    .then(response => {
+      setImage(response.fileUrl);
+    })
+    .catch(err => console.log("Error while uploading the file: ", err));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // await authService.addUserRole(user._id, 'mate');
-      const addedMate = await mateService.createMate(newMate);
-      navigate(`/mates/${addedMate._id}`)
-    } catch (error) {
-      console.error(error)
+      const addedMate = await mateService.createMate({
+        ...newMate,
+        image: image
+      });
+      if(addedMate && addedMate._id){
+        toast.success('Mate created successfully!');
+        setImage('');
+        navigate(`/mates/${addedMate._id}`);
+        setNewMate(initialState)
+      }
+    } catch (err) {
+      console.error(err)
+      toast.error('Something went wrong... 💩');
     }
-  }
-
-  useEffect(() => {
-    console.log(user.userRole)
-  }, [])
+  };
   
   return (
     <div className='app-body'>
@@ -66,9 +80,9 @@ export default function AddMateForm() {
           ))}
        
         <label>Mate's image</label>
-        <input type="text" name="image" value={newMate.image} onChange={handleChange} />
+            <input type="file" name="image" onChange={(e) => handleFileUpload(e)} />
         <label>Mate's genre</label>
-        <input type="text" name="genre" value={newMate.genre} onChange={handleChange} />
+            <input type="text" name="genre" value={newMate.genre} onChange={handleChange} />
         <p>Mate's Instrument</p>
           {['guitar', 'bass', 'drums', 'brass', 'strings', 'voice', 'piano', 'synth', 'folkloric', 'percussion', 'keys', 'other'].map((musicalInstrument) => (
             <div key={musicalInstrument}>

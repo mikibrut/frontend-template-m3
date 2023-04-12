@@ -32,7 +32,7 @@ export default function AddAdvertForm() {
       navigate(`/adverts/${addedAdvert._id}`);
     } catch (error) {
       console.error(error)
-      toast.error('💩');
+      toast.error('Something went wrong... 💩');
     }
   }
 
