@@ -5,17 +5,21 @@ import bandService from '../../services/bandService';
 import mateService from '../../services/mateService';
 import advertService from '../../services/advertService';
 import placeService from '../../services/placeService';
+import commentService from '../../services/commentService';
 import { Link } from 'react-router-dom';
 import GoBack from '../../components/GoBack';
-import { FaPen, FaTrash } from 'react-icons/fa';
+import { FaPen, FaTrash, FaComment, FaCommentSlash } from 'react-icons/fa';
+import Comment from '../../components/Comment';
 
-export default function BandDetail() {
+export default function AdvertDetail() {
   const { advertId } = useParams();
   const { user } = useAuth();
   const [advert, setAdvert] = useState(null);
   const [band, setBand] = useState(null);
   const [mate, setMate] = useState(null);
   const [place, setPlace] = useState(null);
+  const [comments, setComments] = useState([]);
+  const [showComments, setShowComments] = useState(false);
   const navigate = useNavigate();
   
   const getAdvert = async () => {
@@ -40,8 +44,18 @@ export default function BandDetail() {
     }
   }
 
+  const getComments = async () => {
+    try {
+      const response = await commentService.getCommentsByAdvert(advertId);
+      setComments(response);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   useEffect(() => {
     getAdvert();
+    getComments();
     // eslint-disable-next-line 
   }, []);
 
@@ -64,22 +78,22 @@ export default function BandDetail() {
             <p>{advert.message.charAt(0).toUpperCase() + advert.message.slice(1)}</p>
             <p>Location: {advert.location.charAt(0).toUpperCase() + advert.location.slice(1)}</p>
             <p>Contact: {advert.creator.email}</p>
+            
             {
               <div>Add creator: 
                 {band && 
-                  <button>
-                    <Link to={`/bands/${band._id}`}>{band.bandName}</Link>
+                  <button className="user-creator-btn">
+                    <Link style={{ textDecoration: 'none', color:"#3d3d3d"}} to={`/bands/${band._id}`}>{band.bandName.charAt(0).toUpperCase() + band.bandName.slice(1)}</Link>
                   </button>
                 }
                 {mate && 
-                  <button>
-                    {console.log('Mate inside return', mate)}
-                    <Link to={`/mates/${mate._id}`}>{mate.creator.username}</Link>
+                  <button className="user-creator-btn">
+                    <Link style={{ textDecoration: 'none', color:"#3d3d3d"}} to={`/mates/${mate._id}`}>{mate.creator.username.charAt(0).toUpperCase() + mate.creator.username.slice(1)}</Link>
                   </button>
                 }
                 {place && 
-                  <button>
-                    <Link to={`/places/${place._id}`}>{place.placeName}</Link>
+                  <button className="user-creator-btn">
+                    <Link style={{ textDecoration: 'none', color:"#3d3d3d"}} to={`/places/${place._id}`}>{place.placeName.charAt(0).toUpperCase() + place.placeName.slice(1)}</Link>
                   </button>
                 }
               </div>
@@ -87,13 +101,27 @@ export default function BandDetail() {
             
             {user._id == advert.creator._id &&
             <>
-                <button className="edit-delete-btn"><Link  style={{ textDecoration: 'none', color:"#3d3d3d"}}  to={`/adverts/edit/${advert._id}`}><FaPen/></Link></button>
-                <button className="edit-delete-btn" onClick={handleDelete}><FaTrash/></button>
+                <button className="user-btn"><Link  style={{ textDecoration: 'none', color:"#3d3d3d"}}  to={`/adverts/edit/${advert._id}`}><FaPen/></Link></button>
+                <button className="user-btn" onClick={handleDelete}><FaTrash/></button>
             </>
             }
+            {comments.length > 0 && (
+              <button className="user-btn" onClick={() => setShowComments(!showComments)}>
+                {showComments ? <FaCommentSlash /> : <FaComment />}
+              </button>
+            )}
+
+            {showComments && (
+             <div>
+              <Comment advertId={advert._id} />
+            </div>
+            )}
           </div>}
+         
       </div>
       <GoBack/>
     </>
   )
 }
+
+

@@ -52,8 +52,8 @@ export default function MateDetail() {
             </ul>
             {user._id == mate.creator._id &&
             <>
-              <button className="edit-delete-btn"><Link  style={{ textDecoration: 'none', color:"#3d3d3d"}}  to={`/mates/edit/${mate._id}`}><FaPen/></Link></button>
-              <button className="edit-delete-btn" onClick={handleDelete}><FaTrash/></button>
+              <button className="user-btn"><Link  style={{ textDecoration: 'none', color:"#3d3d3d"}}  to={`/mates/edit/${mate._id}`}><FaPen/></Link></button>
+              <button className="user-btn" onClick={handleDelete}><FaTrash/></button>
             </>
             }
           </div>}

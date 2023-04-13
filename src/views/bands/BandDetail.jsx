@@ -64,8 +64,8 @@ export default function BandDetail() {
             </ul>
             {user._id == band.creator._id &&
             <>
-              <button className="edit-delete-btn"><Link  style={{ textDecoration: 'none', color:"#3d3d3d"}}  to={`/bands/edit/${band._id}`}><FaPen/></Link></button>
-              <button className="edit-delete-btn" onClick={handleDelete}><FaTrash/></button>
+              <button className="user-btn"><Link  style={{ textDecoration: 'none', color:"#3d3d3d"}}  to={`/bands/edit/${band._id}`}><FaPen/></Link></button>
+              <button className="user-btn" onClick={handleDelete}><FaTrash/></button>
             </>
             }
           </div>}

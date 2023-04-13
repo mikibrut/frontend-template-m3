@@ -249,7 +249,7 @@ select {
   z-index: 1;
 } 
 
-.edit-delete-btn{
+.user-btn{
   width: 40px;
   height: 40px;
   margin: 10px;
@@ -260,5 +260,22 @@ select {
   border: none;
   background-color: #FFF4F4;
   color: #3d3d3d;
-  font-size: 25px;
+  font-size: 15px;
+  border: 0.5px solid #3d3d3d;
+}
+
+.user-creator-btn{
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  margin: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: #fdf8f8;
+  color: #3d3d3d;
+  font-size: 15px;
+  border: 0.5px solid #3d3d3d;
+  border-radius: 25px;
 }
