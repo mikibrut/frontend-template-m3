@@ -6,7 +6,7 @@ import mateService from '../../services/mateService';
 import advertService from '../../services/advertService';
 import placeService from '../../services/placeService';
 import commentService from '../../services/commentService';
-import { Link } from 'react-router-dom';
+import { NavLink, Link, Outlet } from 'react-router-dom'
 import GoBack from '../../components/GoBack';
 import { FaPen, FaTrash, FaComment, FaCommentSlash } from 'react-icons/fa';
 import Comment from '../../components/Comment';
@@ -21,7 +21,7 @@ export default function AdvertDetail() {
   const [comments, setComments] = useState([]);
   const [showComments, setShowComments] = useState(false);
   const navigate = useNavigate();
-  
+
   const getAdvert = async () => {
     try {
       let creator = undefined;
@@ -43,11 +43,42 @@ export default function AdvertDetail() {
       console.error(error);
     }
   }
-
+  // const getLastComments = async () => {
+  //   try {
+  //     const response = await commentService.getCommentsByAdvert(advertId);
+  //     const commentsArray = Array.from(response).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 10);
+  //     setComments(commentsArray);
+  //   } catch (error) {
+  //     console.error(error)
+  //   }
+  // }
   const getComments = async () => {
     try {
       const response = await commentService.getCommentsByAdvert(advertId);
       setComments(response);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+
+  // const handleAddComment = async (newComment) => {
+  //   try {
+  //     await commentService.createComment(newComment);
+  //     navigate(`/adverts/${advertId}`)
+  //   } catch (error) {
+  //     console.error(error)
+  //   }
+  // };
+
+  // const handleShowFrom = () => {
+  //   setShowForm(prev => !prev)
+  // }
+  
+  const handleDelete = async () => {
+    try {
+      await advertService.deleteAdvert(advertId);
+      navigate('/');
     } catch (error) {
       console.error(error);
     }
@@ -58,15 +89,6 @@ export default function AdvertDetail() {
     getComments();
     // eslint-disable-next-line 
   }, []);
-
-  const handleDelete = async () => {
-    try {
-      await advertService.deleteAdvert(advertId);
-      navigate('/');
-    } catch (error) {
-      console.error(error);
-    }
-  }
 
   return (
     <>
@@ -98,6 +120,12 @@ export default function AdvertDetail() {
                 }
               </div>
             }
+            <div>
+              <button className="user-creator-btn">
+                  <NavLink style={{ textDecoration: 'none', color:"#3d3d3d"}} to={`/adverts/${advert._id}/comments/create`}>New Comment</NavLink>
+              </button>
+              </div>
+              <Outlet />
             
             {user._id == advert.creator._id &&
             <>
@@ -107,14 +135,13 @@ export default function AdvertDetail() {
             }
             {comments.length > 0 && (
               <button className="user-btn" onClick={() => setShowComments(!showComments)}>
-                {showComments ? <FaCommentSlash /> : <FaComment />}
+                {showComments ? <FaCommentSlash /> : <p><FaComment />{comments.length}</p>}
               </button>
             )}
-
             {showComments && (
-             <div>
-              <Comment advertId={advert._id} />
-            </div>
+                <div>
+                  <Comment advertId={advert._id} />
+                </div>
             )}
           </div>}
          

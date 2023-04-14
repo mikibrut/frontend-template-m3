@@ -19,14 +19,6 @@ class CommentService {
     return this.api.get(`/${advertId}`).then(({ data }) => data);
   }
 
-  createComment(advertId, body) {
-    return this.api.post(`/${advertId}/create`, body).then(({ data }) => data);
-  }
-  
-  editComment(advertId, commentId, body) {
-    return this.api.put(`/${advertId}/edit/${commentId}`, body).then(({ data }) => data);
-  }
-  
   deleteComment(commentId) {
     return this.api.delete(`/${commentId}`).then(({ data }) => data);
   }

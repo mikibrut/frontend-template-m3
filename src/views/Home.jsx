@@ -1,9 +1,12 @@
 import React, {useState, useEffect} from 'react';
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import CardMate from '../components/CardMate';
 import CardBand from '../components/CardBand';
+import CardPlace from '../components/CardPlace';
+import CardAdvert from '../components/CardAdvert';
 import mateService from '../services/mateService';
 import bandService from '../services/bandService';
 import advertService from '../services/advertService';
@@ -41,12 +44,34 @@ export default function Home() {
     }
   }
 
+  const getLastPlaces = async () => {
+    try {
+      const response = await placeService.getPlaces();
+      const placeArray = Array.from(response).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 10);
+      setLastPlaces(placeArray);
+      setLoading(false);
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  const getLastAdverts = async () => {
+    try {
+      const response = await advertService.getAdverts();
+      const advertArray = Array.from(response).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 10);
+      setLastAdverts(advertArray);
+      setLoading(false);
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   useEffect(() => {
-    getLastMates()
-    getLastBands()
+    getLastMates();
+    getLastBands();
+    getLastPlaces();
+    getLastAdverts();
   }, [])
-
-
 
   useEffect(() => {
     const claims = [
@@ -65,32 +90,184 @@ export default function Home() {
 
     const renderLastMates = () => {
       return (
-        <div className="slider-container">
-          <div className="slider">
+        <Carousel
+          additionalTransfrom={0}
+          arrows
+          autoPlaySpeed={3000}
+          centerMode={false}
+          className=""
+          containerClass="slider-container"
+          dotListClass=""
+          draggable
+          focusOnSelect={false}
+          infinite={false}
+          itemClass=""
+          keyBoardControl
+          minimumTouchDrag={80}
+          pauseOnHover
+          renderArrowsWhenDisabled={false}
+          renderButtonGroupOutside={false}
+          renderDotsOutside={false}
+          responsive={{
+            mobile: {
+              breakpoint: {
+                max: 464,
+                min: 0
+              },
+              items: 1,
+              partialVisibilityGutter: 30
+            }
+          }}
+          rewind={false}
+          rewindWithAnimation={false}
+          rtl={false}
+          shouldResetAutoplay
+          showDots={false}
+          slidesToSlide={1}
+          swipeable
+        >
             {lastMates.map(elem => (
-              <div className="slide" key={elem._id}>
-                <CardMate mate={elem} />
-              </div>
+                <CardMate key={elem._id} mate={elem} />
             ))}
-          </div>
-        </div>
+      </Carousel>
+      );
+    }
+    
+    const renderLastBands = () => {
+      return (
+        <Carousel
+          additionalTransfrom={0}
+          arrows
+          autoPlaySpeed={3000}
+          centerMode={false}
+          className=""
+          containerClass="slider-container"
+          dotListClass=""
+          draggable
+          focusOnSelect={false}
+          infinite={false}
+          itemClass=""
+          keyBoardControl
+          minimumTouchDrag={80}
+          pauseOnHover
+          renderArrowsWhenDisabled={false}
+          renderButtonGroupOutside={false}
+          renderDotsOutside={false}
+          responsive={{
+            mobile: {
+              breakpoint: {
+                max: 464,
+                min: 0
+              },
+              items: 1,
+              partialVisibilityGutter: 30
+            }
+          }}
+          rewind={false}
+          rewindWithAnimation={false}
+          rtl={false}
+          shouldResetAutoplay
+          showDots={false}
+          slidesToSlide={1}
+          swipeable
+        >
+            {lastBands.map(elem => (
+                <CardBand key={elem._id} band={elem} />
+            ))}
+      </Carousel>
       );
     }
 
-    const renderLastBands = () => {
+    const renderLastPlaces = () => {
       return (
-       
-       <div className="slider-container">
-          <div className="slider">
-            {lastBands.map(elem => (
-              <div className="slide" key={elem._id}>
-                <CardBand band={elem} />
-              </div>
+        <Carousel
+          additionalTransfrom={0}
+          arrows
+          autoPlaySpeed={3000}
+          centerMode={false}
+          className=""
+          containerClass="slider-container"
+          dotListClass=""
+          draggable
+          focusOnSelect={false}
+          infinite={false}
+          itemClass=""
+          keyBoardControl
+          minimumTouchDrag={80}
+          pauseOnHover
+          renderArrowsWhenDisabled={false}
+          renderButtonGroupOutside={false}
+          renderDotsOutside={false}
+          responsive={{
+            mobile: {
+              breakpoint: {
+                max: 464,
+                min: 0
+              },
+              items: 1,
+              partialVisibilityGutter: 30
+            }
+          }}
+          rewind={false}
+          rewindWithAnimation={false}
+          rtl={false}
+          shouldResetAutoplay
+          showDots={false}
+          slidesToSlide={1}
+          swipeable
+        >
+            {lastPlaces.map(elem => (
+                <CardPlace key={elem._id} place={elem} />
             ))}
-          </div>
-        </div>
+      </Carousel>
       );
     }
+
+    const renderLastAdverts = () => {
+      return (
+        <Carousel
+          additionalTransfrom={0}
+          arrows
+          autoPlaySpeed={3000}
+          centerMode={false}
+          className=""
+          containerClass="slider-container"
+          dotListClass=""
+          draggable
+          focusOnSelect={false}
+          infinite={false}
+          itemClass=""
+          keyBoardControl
+          minimumTouchDrag={80}
+          pauseOnHover
+          renderArrowsWhenDisabled={false}
+          renderButtonGroupOutside={false}
+          renderDotsOutside={false}
+          responsive={{
+            mobile: {
+              breakpoint: {
+                max: 464,
+                min: 0
+              },
+              items: 1,
+              partialVisibilityGutter: 30
+            }
+          }}
+          rewind={false}
+          rewindWithAnimation={false}
+          rtl={false}
+          shouldResetAutoplay
+          showDots={false}
+          slidesToSlide={1}
+          swipeable
+        >
+            {lastAdverts.map(elem => (
+                <CardAdvert key={elem._id} advert={elem} />
+            ))}
+      </Carousel>
+      );
+    }
+
   
 
   return (
@@ -100,25 +277,16 @@ export default function Home() {
         <p>Loading...</p>
         ) : (
           <div className='app-body'>
-            <div className="home-body">
-              <div className="last-items">
-                <h2>Last Added Adverts</h2>
-                {/* Render the last added adverts in a slider */}
-              </div>
-              <div className="last-items">
-                <h2>Last Added Mates</h2>
+                <h2 className='title'>Last Adverts</h2>
+                {renderLastAdverts()}
+                <h2 className='title'>Check out the New Mates!</h2>
                 {renderLastMates()}
-              </div>
-              <div className="last-items">
-                <h2>Last Added Bands</h2>
+                <h2 className='title'>Shinni new Bands are join us:</h2>
                 {renderLastBands()}
-              </div>
-              <div className="last-items">
-                <h2>Last Added Places</h2>
-                {/* Render the last added places in a slider */}
-              </div>
-            </div>
+                <h2 className='title'>Take a look at that new Places!</h2>
+                {renderLastPlaces()}
           </div>
+          
       )}
       </>
       :

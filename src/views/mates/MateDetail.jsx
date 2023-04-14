@@ -40,7 +40,7 @@ export default function MateDetail() {
       <div className="app-body">
         <h2 className="title">Mate details</h2>
           {mate && <div className='card-detail'>
-            <h1>{mate.creator.username.charAt(0).toUpperCase() + mate.creator.username.slice(1)}</h1>
+            <h1 className='title'>{mate.creator.username.charAt(0).toUpperCase() + mate.creator.username.slice(1)}</h1>
             <img src={mate.image} alt={mate.creator.username} />
             <ul>
                 <li>Mate type: {mate.type.map(type => type.charAt(0).toUpperCase() + type.slice(1).toLowerCase()).join(', ')}</li>

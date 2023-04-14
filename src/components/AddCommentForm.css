@@ -1,0 +1,60 @@
+
+form {
+    font-family: 'Poppins', sans-serif;
+    max-width: 80%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #FFF4F4;
+    border-radius: 25px;
+    border: 2px solid #3d3d3d
+  }
+  
+  label {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  input {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    width: 90%;
+    border-radius: 25px;
+    border: 2px solid #3d3d3d;
+  }
+  
+  textarea {
+    width: 90%;
+    height: 100px;
+    border-radius: 25px;
+    border: 2px solid #3d3d3d;
+    background-color: #FFF4F4;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+  }
+  
+  .btn {
+    background: #3d3d3d;
+    border-radius: 25px;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: #3d3d3d;
+    outline-offset: 4px;
+  }
+  .front {
+    display: block;
+    padding: 12px 42px;
+    border-radius: 25px;
+    border: 2px solid #3d3d3d;
+    color: #3d3d3d;
+    font-size: 16px;
+    background: #FFD3D3;
+    transform: translateY(-6px);
+  }
+  
+  .btn:active .front {
+    transform: translateY(-2px);
+  }
+  

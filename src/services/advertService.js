@@ -35,6 +35,15 @@ class AdvertService {
     return this.api.delete(`/${id}`).then(({ data }) => data).catch(err => console.error(err))
   }
 
+// -- COMMENT SERVICES INSIDE ADVERTS URL'S
+
+  createComment(id, body) {
+    return this.api.post(`/${id}/comments/create`, body).then(({ data }) => data);
+  }
+
+  editComment(id, commentId, body) {
+    return this.api.put(`/${id}/comments/edit/${commentId}`, body).then(({ data }) => data);
+  }
 
 
 }

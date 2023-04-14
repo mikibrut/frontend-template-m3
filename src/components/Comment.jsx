@@ -5,11 +5,16 @@ import mateService from '../services/mateService';
 import advertService from '../services/advertService';
 import placeService from '../services/placeService';
 import "./Comment.css";
-import { Link } from "react-router-dom";
+import { Link , useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
+import { FaTrash } from 'react-icons/fa';
+import toast from 'react-hot-toast';
 
 function CommentComponent({ advertId }) {
+  const navigate = useNavigate();
+  const { user } = useAuth();
   const [comments, setComments] = useState([]);
-  const [advert, setAdvert] = useState(null);
+//   const [advert, setAdvert] = useState(null);
   const [band, setBand] = useState(null);
   const [mate, setMate] = useState(null);
   const [place, setPlace] = useState(null);
@@ -30,7 +35,18 @@ function CommentComponent({ advertId }) {
         creator = await placeService.getPlacesByCreator(response.creator._id);
         setPlace(creator[0]);  
       }
-      setAdvert(response)
+    //   setAdvert(response)
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  const handleDelete = async (commentId) => {
+    try {
+      await commentService.deleteComment(commentId);
+      setComments(comments.filter((comment) => comment._id !== commentId));
+      toast.success('Comment deleted successfully!');
+      window.location.reload();
     } catch (error) {
       console.error(error);
     }
@@ -38,7 +54,12 @@ function CommentComponent({ advertId }) {
 
   useEffect(() => {
     getAdvert();
+    // eslint-disable-next-line 
+  },[])
+
+  useEffect(() => {
     commentService.getCommentsByAdvert(advertId).then(setComments);
+    // eslint-disable-next-line 
   }, [advertId]);
 
   return (
@@ -63,9 +84,11 @@ function CommentComponent({ advertId }) {
                     <Link style={{ textDecoration: 'none', color:"#3d3d3d"}} to={`/places/${place._id}`}>{place.placeName.charAt(0).toUpperCase() + place.placeName.slice(1)}</Link>
                   </button>
             }
+            {user && <button className="user-btn" onClick={() => handleDelete(comment._id)}><FaTrash/></button>}
         </p>
         <hr className="comment-line" />
       </div>
+     
     ))}
   </div>
   );

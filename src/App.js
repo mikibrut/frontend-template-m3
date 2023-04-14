@@ -26,6 +26,7 @@ import AddPlaceForm from './views/places/AddPlaceForm';
 import PlaceDetail from './views/places/PlaceDetail';
 import EditPlace from './views/places/EditPlace';
 import AdvertProtect from './components/AdvertProtect';
+import AddCommentForm from './components/AddCommentForm';
 
 function App() {
   return (
@@ -47,7 +48,9 @@ function App() {
           <Route path="/places/:placeId" element={<IsPrivate><PlaceDetail /></IsPrivate>} />
           <Route path="/places/edit/:placeId" element={<IsPrivate><EditPlace /></IsPrivate>} />
           <Route path="/adverts" element={<Adverts/>} />
-          <Route path="/adverts/:advertId" element={<IsPrivate><AdvertDetail /></IsPrivate>} />
+          <Route path="/adverts/:advertId" element={<IsPrivate><AdvertDetail /></IsPrivate>}>
+            <Route path="/adverts/:advertId/comments/create" element={<AddCommentForm />} />
+          </Route>
           <Route path="/adverts/edit/:advertId" element={<IsPrivate><EditAdvert /></IsPrivate>} />
           <Route path="/adverts/create" element={<AdvertProtect><AddAdvertForm /></AdvertProtect>} />
           <Route path="/signup" element={<Signup />} />

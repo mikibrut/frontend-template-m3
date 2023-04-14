@@ -70,37 +70,40 @@ export default function AddMateForm() {
   return (
     <div className='app-body'>
       <form onSubmit={handleSubmit}>
-        <div className="checkbox-container">
-        <label>Mate's Types</label>
-          {['musician', 'sound technician', 'manager', 'producer', 'sound engineer', 'light technician'].map((type) => (
-            <div key={type}>
-              <label>{type}</label>
-              <input type="checkbox" name="type" value={type} checked={newMate.type.includes(type)} onChange={handleCheckbox} />
-            </div>
-          ))}
+
+        <label>Mate's Type</label>
+              <div className="checkbox-container">
+              {['musician', 'sound technician', 'manager', 'producer', 'sound engineer', 'light technician'].map((type) => (
+                  <aside className="checkbox-list" key={type}>
+                    <label className="check-item">
+                    <input type="checkbox" name="type" value={type} checked={newMate.type.includes(type)} onChange={handleCheckbox} />
+                    <span>{type}</span>
+                    </label>
+                  </aside>
+                ))}
+              </div>
        
         <label>Mate's image</label>
             <input type="file" name="image" onChange={(e) => handleFileUpload(e)} />
+        
         <label>Mate's genre</label>
             <input type="text" name="genre" value={newMate.genre} onChange={handleChange} />
-        <p>Mate's Instrument</p>
-          {['guitar', 'bass', 'drums', 'brass', 'strings', 'voice', 'piano', 'synth', 'folkloric', 'percussion', 'keys', 'other'].map((musicalInstrument) => (
-            <div key={musicalInstrument}>
-              <label>{musicalInstrument}</label>
-              <input type="checkbox" name="musicalInstrument" value={musicalInstrument} checked={newMate.musicalInstrument.includes(musicalInstrument)} onChange={handleCheckbox} />
+
+        <label>Mate's Instrument</label>
+            <div className="checkbox-container">
+              {['guitar', 'bass', 'drums', 'brass', 'strings', 'voice', 'piano', 'synth', 'folkloric', 'percussion', 'keys', 'other'].map((musicalInstrument) => (
+                <aside className="checkbox-list" key={musicalInstrument}>
+                  <label className="check-item">
+                  <input type="checkbox" name="musicalInstrument" value={musicalInstrument} checked={newMate.musicalInstrument.includes(musicalInstrument)} onChange={handleCheckbox} />
+                  <span>{musicalInstrument}</span>
+                  </label>
+                </aside>
+              ))}
             </div>
-          ))}
-        <label>Musical genre</label>
-        {['rock', 'fusion', 'flamenco', 'pop', 'hip hop', 'jazz', 'blues', 'country', 'classical', 'metal', 'folk', 'electronic', 'reggae', 'latin', 'world', 'other'].map((musicalGenre) => (
-            <div key={musicalGenre}>
-              <label>{musicalGenre}</label>
-              <input type="checkbox" name="musicalGenre" value={musicalGenre} checked={newMate.musicalGenre.includes(musicalGenre)} onChange={handleCheckbox} />
-            </div>
-          ))}
+          
         <label>Location</label>
               <input type="text" name="location" value={newMate.location} onChange={handleChange} />
-        
-      </div>
+       
         <button className="btn" type="submit">
           <span className="front">Create Mate</span> </button>
       </form>

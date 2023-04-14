@@ -9,10 +9,10 @@ function CardBand(props) {
   return (
     <div className="card">
       <Link style={{ textDecoration: 'none', color:"#3d3d3d"}}to={`/bands/${band._id}`}>
-        <h2>{band.bandName.charAt(0).toUpperCase() + band.bandName.slice(1)}</h2>
+        <h1 className='title'>{band.bandName.charAt(0).toUpperCase() + band.bandName.slice(1)}</h1>
         <img src={band.image} alt={band.creator} /> 
-        <p>Band musical genre: {band.musicalGenre.map(musicalGenre => musicalGenre.charAt(0).toUpperCase() + musicalGenre.slice(1).toLowerCase()).join(', ')}</p>
-        <p>Location: {band.location.charAt(0).toUpperCase() + band.location.slice(1)} </p>
+        <h3>Band musical genre: {band.musicalGenre.map(musicalGenre => musicalGenre.charAt(0).toUpperCase() + musicalGenre.slice(1).toLowerCase()).join(', ')}</h3>
+        <h4>Location: {band.location.charAt(0).toUpperCase() + band.location.slice(1)} </h4>
       </Link> 
     </div>
       

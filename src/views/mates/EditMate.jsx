@@ -14,6 +14,7 @@ export default function EditMate() {
     location:''
   });
   const [error, setError] = useState(false)
+  const [image, setImage] = useState('');
   const navigate = useNavigate();
 
   const getMate = async () => {
@@ -50,12 +51,25 @@ export default function EditMate() {
       }
     })
   }
-  
+
+  // ******** Cloudinary Upload files ********
+  const handleFileUpload = (e) => {
+    const uploadData = new FormData();
+    uploadData.append("image", e.target.files[0]);
+    mateService.uploadImage(uploadData)
+    .then(response => {
+      setImage(response.fileUrl);
+    })
+    .catch(err => console.log("Error while uploading the file: ", err));
+  };
   
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await mateService.editMate(mateId, mate);
+      await mateService.editMate(mateId, {
+        ...mate,
+        image: image
+      });
       navigate(`/mates/${mateId}`)
     } catch (error) {
       console.error(error)
@@ -66,36 +80,40 @@ export default function EditMate() {
     <div className='app-body'>
       <form onSubmit={handleSubmit}>
         {error && <p>Something went wrong. Couldn't find your MATE</p>}
-        <div className="checkbox-container">
-            <label>Mate's Types</label>
-            {['musician', 'sound technician', 'manager', 'producer', 'sound engineer', 'light technician'].map((type) => (
-                <div key={type}>
-                    <label>{type}</label>
-                        <input type="checkbox" name="type" value={type} checked={mate.type.includes(type)} onChange={handleCheckbox} />
-                </div>
-            ))}
-        </div>
+        
+        <label>Mate's Type</label>
+              <div className="checkbox-container">
+              {['musician', 'sound technician', 'manager', 'producer', 'sound engineer', 'light technician'].map((type) => (
+                  <aside className="checkbox-list" key={type}>
+                    <label className="check-item">
+                    <input type="checkbox" name="type" value={type} checked={mate.type.includes(type)} onChange={handleCheckbox} />
+                    <span>{type}</span>
+                    </label>
+                  </aside>
+                ))}
+              </div>
+       
         <label>Mate's image</label>
-            <input type="text" name="image" value={mate.image} onChange={handleChange} />
+            <input type="file" name="image" onChange={(e) => handleFileUpload(e)} />
+        
         <label>Mate's genre</label>
             <input type="text" name="genre" value={mate.genre} onChange={handleChange} />
-        <p>Mate's Instrument</p>
-          {['guitar', 'bass', 'drums', 'brass', 'strings', 'voice', 'piano', 'synth', 'folkloric', 'percussion', 'keys', 'other'].map((musicalInstrument) => (
-            <div key={musicalInstrument}>
-              <label>{musicalInstrument}</label>
-                <input type="checkbox" name="musicalInstrument" value={musicalInstrument} checked={mate.musicalInstrument.includes(musicalInstrument)} onChange={handleCheckbox} />
-            </div>
-          ))}
-        <label>Musical genre</label>
-        {['rock', 'fusion', 'flamenco', 'pop', 'hip hop', 'jazz', 'blues', 'country', 'classical', 'metal', 'folk', 'electronic', 'reggae', 'latin', 'world', 'other'].map((musicalGenre) => (
-            <div key={musicalGenre}>
-              <label>{musicalGenre}</label>
-                <input type="checkbox" name="musicalGenre" value={musicalGenre} checked={mate.musicalGenre.includes(musicalGenre)} onChange={handleCheckbox} />
-            </div>
-          ))}
-          <label>Location</label>
-            <input type="text" name="location" value={mate.location} onChange={handleChange} />
 
+        <label>Mate's Instrument</label>
+            <div className="checkbox-container">
+              {['guitar', 'bass', 'drums', 'brass', 'strings', 'voice', 'piano', 'synth', 'folkloric', 'percussion', 'keys', 'other'].map((musicalInstrument) => (
+                <aside className="checkbox-list" key={musicalInstrument}>
+                  <label className="check-item">
+                  <input type="checkbox" name="musicalInstrument" value={musicalInstrument} checked={mate.musicalInstrument.includes(musicalInstrument)} onChange={handleCheckbox} />
+                  <span>{musicalInstrument}</span>
+                  </label>
+                </aside>
+              ))}
+            </div>
+          
+        <label>Location</label>
+              <input type="text" name="location" value={mate.location} onChange={handleChange} />
+       
         <button className="btn" type="submit">
           <span className="front">Save changes</span> </button>
       </form>
