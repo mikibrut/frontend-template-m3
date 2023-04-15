@@ -1,6 +1,7 @@
 .search-container {
   position: relative;
-  width: 200px;
+  margin-top: 10px;
+  width: 220px;
 }
 
 .search-button {
