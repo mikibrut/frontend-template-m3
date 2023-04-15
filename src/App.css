@@ -1,28 +1,16 @@
-/* .container {
-  position: absolute;
-  margin-top: 10vh;
-  margin-left: auto;
-  margin-right: auto;
-} */
+
 
 body{
-  /* background-color: #FFE1AD; */
-  background-image:url('./img/147683-OUGXDY-911.jpg');
+  background-image:url('./img/bckgrnd.png');
 }
 
-.title{
-  padding: 5px;
-  margin: 0;
-  text-align: center;
-  font-family: 'MuseoModerno', cursive;
-}
 
 /*------LAYOUT BODY-------*/
 
 div.app-body {
   position: absolute;
   width: 95%;
-  margin: 120px 10px 10px 10px;
+  margin: 90px 10px 10px 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -30,11 +18,26 @@ div.app-body {
   align-self: center;
   font-family: 'Poppins', sans-serif;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 20px;
   color: #3d3d3d;
   overflow-y: scroll;
   border-radius: 30px;
-  background-color: #FFE1AD;
+}
+
+.title{
+  padding: 15px 0;
+  margin: 0;
+  text-align: center;
+  font-family: 'MuseoModerno', cursive;
+}
+
+.title-bg{
+  background-color: #00CCCD;
+  padding: 0 20px;
+  display: block;
+  text-align: center;
+  border-radius: 0 25px 0 25px;
+  border: 2px solid #3d3d3d;
 }
 
 
@@ -42,6 +45,7 @@ div.app-body {
 
 .home-noLog-body{
   position: absolute;
+  height: 100%;
   background-image: url(img/backgroundPublic.png);
   z-index: 0;
 }
@@ -95,8 +99,8 @@ div.app-body {
 .card-detail {
   background-color: #FFF4F4;
   border-radius: 25px;
-  box-shadow: 0 2px 4px #3d3d3d;
-  width: 250px;
+  box-shadow: 2px 4px 8px #3d3d3d;
+  width: 300px;
   height: 100%;
   max-height: fit-content;
   text-align: center;
@@ -129,17 +133,22 @@ div.app-body {
   font-size: 16px;
 } 
 
+.link{
+  color: #3d3d3d;
+  font-size: 40px ;
+}
+
 /*-------FORMS----*/
 
 form {
   font-family: 'Poppins', sans-serif;
-  width: 100%;
+  font-weight: bold;
   display: flex;
+  min-width: 80%;
   flex-direction: column;
   align-items: center;
   background-color: #FFF4F4;
   padding: 20px;
-  margin: 20px;
   border-radius: 25px;
   border: 2px solid #3d3d3d
 }
@@ -156,6 +165,7 @@ input {
   padding: 10px;
   border-radius: 25px;
   border: 2px solid #3d3d3d;
+  
 }
 
 textarea {
@@ -164,7 +174,7 @@ textarea {
   padding: 10px;
   border-radius: 25px;
   border: 2px solid #3d3d3d;
-  background-color: #FFF4F4;
+  /* background-color: #FFF4F4; */
   margin-bottom: 20px;
   font-family: 'Poppins', sans-serif;
   font-weight: bold;
@@ -181,7 +191,7 @@ select {
 }
 
 .btn {
-  margin-top: 25px;
+  margin-top: 30px;
   background: #3d3d3d;
   border-radius: 25px;
   border: none;
@@ -189,6 +199,7 @@ select {
   cursor: pointer;
   color: #3d3d3d;
   outline-offset: 4px;
+  font-weight: bold;
 }
 
 .front {
@@ -197,13 +208,15 @@ select {
   border-radius: 25px;
   border: 2px solid #3d3d3d;
   color: #3d3d3d;
-  font-size: 1.25rem;
   background: #FFD3D3;
   transform: translateY(-6px);
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
 }
 
 .btn:active .front {
   transform: translateY(-2px);
+  
 }
 
 .checkbox-container{
@@ -290,10 +303,10 @@ select {
   justify-content: center;
   border-radius: 50%;
   border: none;
-  background-color: #00CCCD;
+  background-color: #FF9AD6;
   color: #3d3d3d;
   font-size: 15px;
-  border: 0.5px solid #3d3d3d;
+  padding: 5px;
 }
 
 .user-creator-btn{
@@ -305,9 +318,9 @@ select {
   align-items: center;
   justify-content: center;
   border: none;
-  background-color: #00CCCD;
+  background-color: #71D0FE;
   color: #3d3d3d;
   font-size: 15px;
-  border: 0.5px solid #3d3d3d;
+  padding: 5px 15px;
   border-radius: 25px;
 }

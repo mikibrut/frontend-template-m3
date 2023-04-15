@@ -18,6 +18,7 @@ function IsPrivate({ children }) {
       }, 1500);
       return () => clearTimeout(timer);
     }
+    // eslint-disable-next-line
   }, [isLoggedIn]);
 
   // If the authentication is still loading 
@@ -28,8 +29,8 @@ function IsPrivate({ children }) {
     return (
       <>
         {showMessage && 
-        <div className="container">
-          <p>You have to be logged in to see this content.</p>
+        <div className="app-body">
+          <h2 className='card-detail'>You have to be logged in to see this content.</h2>
         </div>}
       </>
     );

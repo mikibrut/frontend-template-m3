@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import authService from '../../services/authService';
 
 export default function Signup() {
@@ -42,19 +42,29 @@ export default function Signup() {
 
   return (
     <div className="app-body">
+      <h2 className='title'><span className='title-bg'>Sign up</span></h2>
+      
       <form onSubmit={handleSubmit}>
+        
         <label>Username</label>
-        <input required type="text" name="username" value={user.username} onChange={handleChange} />
+          <input required type="text" name="username" value={user.username} onChange={handleChange} />
+        
         <label>Email</label>
-        <input required type="email" name="email" value={user.email} onChange={handleChange} />
+          <input required type="email" name="email" value={user.email} onChange={handleChange} />
+        
         <label>Password</label>
-        <input required type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value) } />
+          <input required type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value) } />
+        
         <label>Repeat the password</label>
-        <input required type="password" name="passwordControl" value={passwordControl} onChange={(e) => setPasswordControl(e.target.value)} />
+          <input required type="password" name="passwordControl" value={passwordControl} onChange={(e) => setPasswordControl(e.target.value)} />
+        
         {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+        
         <button className="btn" type="submit">
           <span className="front">Register</span> </button>
       </form>
+
+      <Link className="user-creator-btn" style={{ marginTop: '20px', textDecoration: 'none', color: '#3d3d3d', fontSize: '20px', fontWeight: 'bold' }} to="/login">Already have an account</Link>
     </div>
   )
 }

@@ -42,11 +42,11 @@ export default function AddAdvertForm() {
     <div className='app-body'>
       <form onSubmit={handleSubmit}>
         <label>Location</label>
-            <input type="text" required="true" name="location" value={newAdvert.location} onChange={handleChange} />
+            <input type="text" required={true} name="location" value={newAdvert.location} onChange={handleChange} />
         <label>Title</label>
-            <input type="text" required="true" name="title" value={newAdvert.title} onChange={handleChange} />
+            <input type="text" required={true} name="title" value={newAdvert.title} onChange={handleChange} />
         <label>Message</label>
-            <input type="text" required="true" name="message" value={newAdvert.message} onChange={handleChange} />
+            <input type="text" required={true} name="message" value={newAdvert.message} onChange={handleChange} />
         <label>Type:</label>
         <select className="select-style" name="type" value={newAdvert.type} onChange={handleChange}>
             <option value="">Select type</option>

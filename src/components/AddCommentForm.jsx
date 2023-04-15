@@ -28,9 +28,11 @@ export default function AddCommentForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await advertService.createComment(advertId, newComment);
+      const response = await advertService.createComment(advertId, newComment);
       toast.success('Comment created successfully!');
-      navigate(`/adverts/${advertId}`);
+      if(response){
+        navigate(`/adverts/${advertId}`);
+      }
     } catch (error) {
       console.error(error)
       toast.error('Something went wrong... 💩');
@@ -41,9 +43,9 @@ export default function AddCommentForm() {
     <div>
       <form onSubmit={handleSubmit}>
         <label>Title</label>
-            <input type="text" required="true" name="title" value={newComment.title} onChange={handleChange} />
+            <input type="text" required={true} name="title" value={newComment.title} onChange={handleChange} />
         <label>Message</label>
-            <textarea required="true" name="text" value={newComment.text} onChange={handleChange} />
+            <textarea required={true} name="text" value={newComment.text} onChange={handleChange} />
         <button className="btn" type="submit">
             <span className="front">Send Comment</span> </button>
       </form>

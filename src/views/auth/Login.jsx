@@ -55,6 +55,7 @@ export default function Login() {
 
   return (
     <div className="app-body">
+      <h2 className='title'><span className='title-bg'>Login</span></h2>
       <form onSubmit={handleSubmit}>
         <label>Email</label>
         <input required type="email" name="email" value={user.email} onChange={handleChange} />
@@ -69,7 +70,7 @@ export default function Login() {
         <button className="btn" type="submit">
           <span className="front">Log in</span> </button>
       </form>
-      <Link style={{ marginTop: '20px', textDecoration: 'none', color: '#3d3d3d', fontSize: '20px', fontWeight: 'bold' }} to="/signup">Create an account</Link>
+      <Link className="user-creator-btn" style={{ marginTop: '20px', textDecoration: 'none', color: '#3d3d3d', fontSize: '20px', fontWeight: 'bold' }} to="/signup">Create an account</Link>
     </div>
   )
 }

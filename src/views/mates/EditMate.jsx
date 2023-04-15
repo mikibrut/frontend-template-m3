@@ -11,7 +11,8 @@ export default function EditMate() {
     genre: '',
     musicalGenre: [],
     musicalInstrument: [],
-    location:''
+    location:'',
+    links: []
   });
   const [error, setError] = useState(false)
   const [image, setImage] = useState('');
@@ -32,14 +33,14 @@ export default function EditMate() {
     // eslint-disable-next-line
   }, [mateId])
 
-
   const handleChange = (e) => {
-    setMate(prev => {
+    const { name, value } = e.target;
+    setMate(prevState => {
       return {
-        ...prev,
-        [e.target.name]: e.target.value
+        ...prevState,
+        [name]: name === "links" ? [...prevState.links, value] : value
       }
-    })
+    });
   }
 
   const handleCheckbox = (e) => {
@@ -111,8 +112,11 @@ export default function EditMate() {
               ))}
             </div>
           
+        <label>Link</label>
+            <input type="text" name="links" value={mate.links} onChange={handleChange} />
+        
         <label>Location</label>
-              <input type="text" name="location" value={mate.location} onChange={handleChange} />
+            <input type="text" name="location" value={mate.location} onChange={handleChange} />
        
         <button className="btn" type="submit">
           <span className="front">Save changes</span> </button>

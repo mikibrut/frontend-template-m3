@@ -11,7 +11,8 @@ export default function AddPlaceForm() {
     description: '',
     type: [],
     image: '',
-    location: ''
+    location: '',
+    links: []
   }
   const [newPlace, setNewPlace] = useState(initialState);
   const [image, setImage] = useState('');
@@ -19,12 +20,13 @@ export default function AddPlaceForm() {
 //   const { user } = useAuth();
 
   const handleChange = (e) => {
-    setNewPlace(prev => {
+    const { name, value } = e.target;
+    setNewPlace(prevState => {
       return {
-        ...prev,
-        [e.target.name]: e.target.value
+        ...prevState,
+        [name]: name === "links" ? [...prevState.links, value] : value
       }
-    })
+    });
   }
 
   const handleCheckbox = (e) => {
@@ -69,24 +71,37 @@ export default function AddPlaceForm() {
   
   return (
     <div className='app-body'>
-        <form onSubmit={handleSubmit}>
-        <div className="checkbox-container">
+
+    <h2 className='title'><span className='title-bg'>New Place</span></h2>
+
+     <form onSubmit={handleSubmit}>
+            
             <label>Place Name</label>
                 <input type="text" name="placeName" value={newPlace.placeName} onChange={handleChange} />
+            
             <label>Place Type</label>
+                <div className="checkbox-container">
                 {['venue', 'concert hall', 'rehearsal rooms', 'recording studio', 'music-bar', 'other'].map((type) => (
-                    <div key={type}>
-                        <label>{type}</label>
-                            <input type="checkbox" name="type" value={type} checked={newPlace.type.includes(type)} onChange={handleCheckbox} />
-                    </div>
+                      <aside className="checkbox-list" key={type}>
+                        <label className="check-item">
+                        <input type="checkbox" name="type" value={type} checked={newPlace.type.includes(type)} onChange={handleCheckbox} />
+                        <span>{type}</span>
+                        </label>
+                      </aside>
                 ))}
+            
             <label>Place image</label>
                 <input type="file" name="image" onChange={(e) => handleFileUpload(e)} />
+            
             <label>Description</label>
                 <textarea name="description" value={newPlace.description} onChange={handleChange} />
+            
             <label>Location</label>
                 <input type="text" name="location" value={newPlace.location} onChange={handleChange} />
 
+            <label>Link</label>
+                <input type="text" name="links" value={newPlace.links} onChange={handleChange} />
+        
         </div>  
 
             <button className="btn" type="submit">

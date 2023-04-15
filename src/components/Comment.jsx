@@ -5,13 +5,12 @@ import mateService from '../services/mateService';
 import advertService from '../services/advertService';
 import placeService from '../services/placeService';
 import "./Comment.css";
-import { Link , useNavigate } from "react-router-dom";
+import { Link  } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import { FaTrash } from 'react-icons/fa';
 import toast from 'react-hot-toast';
 
 function CommentComponent({ advertId }) {
-  const navigate = useNavigate();
   const { user } = useAuth();
   const [comments, setComments] = useState([]);
 //   const [advert, setAdvert] = useState(null);

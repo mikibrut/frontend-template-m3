@@ -11,20 +11,23 @@ export default function AddMateForm() {
     image: '',
     genre: '',
     musicalInstrument: [],
-    musicalGenre: []
+    musicalGenre: [],
+    location: '',
+    links: []
   }
   const [newMate, setNewMate] = useState(initialState);
   const [image, setImage] = useState('');
   const navigate = useNavigate();
 
-   
+
   const handleChange = (e) => {
-    setNewMate(prev => {
+    const { name, value } = e.target;
+    setNewMate(prevState => {
       return {
-        ...prev,
-        [e.target.name]: e.target.value
+        ...prevState,
+        [name]: name === "links" ? [...prevState.links, value] : value
       }
-    })
+    });
   }
 
   const handleCheckbox = (e) => {
@@ -69,6 +72,9 @@ export default function AddMateForm() {
   
   return (
     <div className='app-body'>
+      
+      <h2 className='title'><span className='title-bg'>New Mate</span></h2>
+
       <form onSubmit={handleSubmit}>
 
         <label>Mate's Type</label>
@@ -100,6 +106,9 @@ export default function AddMateForm() {
                 </aside>
               ))}
             </div>
+
+        <label>Link</label>
+            <input type="text" name="links" value={newMate.links} onChange={handleChange} />
           
         <label>Location</label>
               <input type="text" name="location" value={newMate.location} onChange={handleChange} />

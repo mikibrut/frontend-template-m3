@@ -13,9 +13,9 @@ export default function AdvertProtect({ children }) {
   const getUserRole = async () => {
     try {
       const [userMates, userBands, userPlaces] = await Promise.all([
-        mateService.getMatesByCreator(user._id),
-        bandService.getBandsByCreator(user._id),
-        placeService.getPlacesByCreator(user._id),
+        mateService.getMatesByCreator(user?._id),
+        bandService.getBandsByCreator(user?._id),
+        placeService.getPlacesByCreator(user?._id),
       ]);
 
       if (userMates.length > 0) {

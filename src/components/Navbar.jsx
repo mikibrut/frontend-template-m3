@@ -5,10 +5,9 @@ import logoLetters from '../img/logoLetters.png';
 import "./Navbar.css";
 import { GrMenu, GrClose } from 'react-icons/gr';
 import { CgProfile } from 'react-icons/cg';
-import { useAuth } from '../hooks/useAuth';
+
 
 export default function Navbar() { 
-  const { user, isLoggedIn, isLoading } = useAuth();
   const [isMenuActive, setIsMenuActive] = useState(false);
 
 

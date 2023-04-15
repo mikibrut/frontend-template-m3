@@ -10,9 +10,11 @@ export default function EditPlace() {
     description: '',
     type: [],
     image: '',
-    location: ''
+    location: '',
+    links: []
   });
   const [error, setError] = useState(false)
+  const [image, setImage] = useState('');
   const navigate = useNavigate();
 
   const getPlace = async () => {
@@ -32,12 +34,13 @@ export default function EditPlace() {
 
 
   const handleChange = (e) => {
-    setPlace(prev => {
+    const { name, value } = e.target;
+    setPlace(prevState => {
       return {
-        ...prev,
-        [e.target.name]: e.target.value
+        ...prevState,
+        [name]: name === "links" ? [...prevState.links, value] : value
       }
-    })
+    });
   }
 
   const handleCheckbox = (e) => {
@@ -50,11 +53,24 @@ export default function EditPlace() {
     })
   }
   
-  
+  // ******** Cloudinary Upload files ********
+  const handleFileUpload = (e) => {
+    const uploadData = new FormData();
+    uploadData.append("image", e.target.files[0]);
+    placeService.uploadImage(uploadData)
+    .then(response => {
+      setImage(response.fileUrl);
+    })
+    .catch(err => console.log("Error while uploading the file: ", err));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await placeService.editPlace(placeId, place);
+      await placeService.editPlace(placeId, {
+        ...place,
+        image: image
+      });
       navigate(`/places/${placeId}`)
     } catch (error) {
       console.error(error)
@@ -63,28 +79,42 @@ export default function EditPlace() {
 
   return (
     <div className='app-body'>
+      
       <form onSubmit={handleSubmit}>
         {error && <p>Something went wrong. Couldn't find your PLACE</p>}
-        <div className="checkbox-container">
+        
+        
         <label>Place Name</label>
             <input type="text" name="placeName" value={place.placeName} onChange={handleChange} />
+        
         <label>Place Type</label>
-            {['venue', 'concert hall', 'rehearsal rooms', 'recording studio', 'music-bar', 'other'].map((type) => (
-                <div key={type}>
-                    <label>{type}</label>
+            <div className="checkbox-container">
+                {['venue', 'concert hall', 'rehearsal rooms', 'recording studio', 'music-bar', 'other'].map((type) => (
+                    <aside className="checkbox-list" key={type}>
+                      <label className="check-item">
                         <input type="checkbox" name="type" value={type} checked={place.type.includes(type)} onChange={handleCheckbox} />
-                </div>
-            ))}
-        </div>
+                          <span>{type}</span>
+                        </label>
+                    </aside>
+                ))}
+            </div>
+        
         <label>Place image</label>
-            <input type="text" name="image" value={place.image} onChange={handleChange} />
+            <input type="file" name="image" onChange={(e) => handleFileUpload(e)} />
+            
         <label>Description</label>
             <textarea name="description" value={place.description} onChange={handleChange} />
+        
         <label>Location</label>
             <input type="text" name="location" value={place.location} onChange={handleChange} />
       
+        <label>Link</label>
+            <input type="text" name="links" value={place.links} onChange={handleChange} />
+        
+
         <button className="btn" type="submit">
           <span className="front">Save changes</span> </button>
+      
       </form>
       <GoBack/>
     </div>

@@ -93,16 +93,16 @@ export default function AdvertDetail() {
   return (
     <>
       <div className="app-body">
-        <h2 className='title'>Advert details</h2>
+      <h2 className='title'><span className='title-bg'>Advert details</span></h2>
           {advert && <div className='card-detail'>
-            <h4>{advert.type.charAt(0).toUpperCase() + advert.type.slice(1)}</h4>
-            <h2>{advert.title.charAt(0).toUpperCase() + advert.title.slice(1)}</h2>
-            <p>{advert.message.charAt(0).toUpperCase() + advert.message.slice(1)}</p>
-            <p>Location: {advert.location.charAt(0).toUpperCase() + advert.location.slice(1)}</p>
-            <p>Contact: {advert.creator.email}</p>
-            
+          <h2>{advert.title.charAt(0).toUpperCase() + advert.title.slice(1)}</h2>
+            <ul>
+              <li>{advert.type.charAt(0).toUpperCase() + advert.type.slice(1)}</li>
+              <li>{advert.message.charAt(0).toUpperCase() + advert.message.slice(1)}</li>
+              <li>Location: {advert.location.charAt(0).toUpperCase() + advert.location.slice(1)}</li>
+              <li>Contact: {advert.creator.email}</li>
             {
-              <div>Add creator: 
+              <li>Add creator: 
                 {band && 
                   <button className="user-creator-btn">
                     <Link style={{ textDecoration: 'none', color:"#3d3d3d"}} to={`/bands/${band._id}`}>{band.bandName.charAt(0).toUpperCase() + band.bandName.slice(1)}</Link>
@@ -118,15 +118,16 @@ export default function AdvertDetail() {
                     <Link style={{ textDecoration: 'none', color:"#3d3d3d"}} to={`/places/${place._id}`}>{place.placeName.charAt(0).toUpperCase() + place.placeName.slice(1)}</Link>
                   </button>
                 }
-              </div>
+              </li>
             }
-            <div>
+            </ul>
+            <>
               <button className="user-creator-btn">
-                  <NavLink style={{ textDecoration: 'none', color:"#3d3d3d"}} to={`/adverts/${advert._id}/comments/create`}>New Comment</NavLink>
+                  <NavLink style={{ textDecoration: 'none', color:"#3d3d3d"}} to={`/adverts/${advert._id}/comments/create`}>Create comment</NavLink>
               </button>
-              </div>
+            </>
               <Outlet />
-            
+               {/* eslint-disable-next-line */}
             {user._id == advert.creator._id &&
             <>
                 <button className="user-btn"><Link  style={{ textDecoration: 'none', color:"#3d3d3d"}}  to={`/adverts/edit/${advert._id}`}><FaPen/></Link></button>

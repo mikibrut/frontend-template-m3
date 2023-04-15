@@ -10,15 +10,17 @@ export default function Profile() {
   return (
     <>
     <div className="app-body">
+    <h2 className='title'><span className='title-bg'>Profile</span></h2>
+      <div className='card-detail'>
        {user && 
-       <div>
-       <p>Hello {user.username}</p> 
-       <p>Email:{user.email} </p>
-       </div>}
-       <ul>
-         {isLoggedIn && <li><button className="btn" onClick={() => logOutUser()}><span className="front">Logout</span></button></li>}
-       </ul>
-       
+          <div>
+            <p>Hello {user.username}</p> 
+            <p>Email:{user.email} </p>
+          </div>}
+          <div>
+            {isLoggedIn && <li><button className="btn" onClick={() => logOutUser()}><span className="front">Logout</span></button></li>}
+          </div>
+       </div>
     </div>
     <GoBack/>
     </>

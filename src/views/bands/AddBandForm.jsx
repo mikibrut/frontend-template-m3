@@ -11,20 +11,21 @@ export default function AddBandForm() {
     image: '',
     bio: '',
     musicalGenre: [],
-    location: ''
+    location: '',
+    links:[]
   }
   const [newBand, setNewBand] = useState(initialState);
   const [image, setImage] = useState('');
   const navigate = useNavigate();
 
-  
   const handleChange = (e) => {
-    setNewBand(prev => {
+    const { name, value } = e.target;
+    setNewBand(prevState => {
       return {
-        ...prev,
-        [e.target.name]: e.target.value
+        ...prevState,
+        [name]: name === "links" ? [...prevState.links, value] : value
       }
-    })
+    });
   }
 
   const handleCheckbox = (e) => {
@@ -69,24 +70,38 @@ export default function AddBandForm() {
 
   return (
     <div className='app-body'>
+
+      <h2 className='title'><span className='title-bg'>New Band</span></h2>
+
       <form onSubmit={handleSubmit}>
-         <div className="checkbox-container">
-            <label>Band's Name</label>
-                <input type="text" name="bandName" value={newBand.bandName} onChange={handleChange} />
-            <label>Band's Image</label>
-                <input type="file" name="image" onChange={(e) => handleFileUpload(e)} />
-            <label>Bio</label>
-                <textarea name="bio" value={newBand.bio} onChange={handleChange} />
-            <label>Musical genre</label>
-                {['rock', 'fusion', 'flamenco', 'pop', 'hip hop', 'jazz', 'blues', 'country', 'classical', 'metal', 'folk', 'electronic', 'reggae', 'latin', 'world', 'other'].map((musicalGenre) => (
-                    <div key={musicalGenre}>
-                        <label>{musicalGenre}</label>
-                            <input type="checkbox" name="musicalGenre" value={musicalGenre} checked={newBand.musicalGenre.includes(musicalGenre)} onChange={handleCheckbox} />
-                    </div>
-                    ))}
-            <label>Location</label>
-                  <input type="text" name="location" value={newBand.location} onChange={handleChange} />
-         </div>
+      
+        <label>Band's Name</label>
+            <input type="text" name="bandName" value={newBand.bandName} onChange={handleChange} />
+            
+        <label>Band's Image</label>
+            <input type="file" name="image" onChange={(e) => handleFileUpload(e)} />
+            
+        <label>Bio</label>
+            <textarea name="bio" value={newBand.bio} onChange={handleChange} />
+            
+        <label>Musical Genre</label>
+            <div className="checkbox-container">
+            {['rock', 'fusion', 'flamenco', 'pop', 'hip hop', 'jazz', 'blues', 'country', 'classical', 'metal', 'folk', 'electronic', 'reggae', 'latin', 'world', 'other'].map((musicalGenre) => (
+                  <aside className="checkbox-list" key={musicalGenre}>
+                    <label className="check-item">
+                    <input type="checkbox" name="musicalGenre" value={musicalGenre} checked={newBand.musicalGenre.includes(musicalGenre)} onChange={handleCheckbox} />
+                    <span>{musicalGenre}</span>
+                    </label>
+                  </aside>
+            ))}
+            </div> 
+
+        <label>Link</label>
+            <input type="text" name="links" value={newBand.links} onChange={handleChange} />  
+          
+        <label>Location</label>
+            <input type="text" name="location" value={newBand.location} onChange={handleChange} />
+         
 
         <button className="btn" type="submit">
             <span className="front">Create Band</span> </button>

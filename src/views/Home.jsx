@@ -277,13 +277,13 @@ export default function Home() {
         <p>Loading...</p>
         ) : (
           <div className='app-body'>
-                <h2 className='title'>Last Adverts</h2>
+                <h2 className='title'><span className='title-bg'>New Adverts</span></h2>
                 {renderLastAdverts()}
-                <h2 className='title'>Check out the New Mates!</h2>
+                <h2 className='title'><span className='title-bg'>Check out the New Mates!</span></h2>
                 {renderLastMates()}
-                <h2 className='title'>Shinni new Bands are join us:</h2>
+                <h2 className='title'><span className='title-bg'>New Bands are join us:</span></h2>
                 {renderLastBands()}
-                <h2 className='title'>Take a look at that new Places!</h2>
+                <h2 className='title'><span className='title-bg'>New Places!</span></h2>
                 {renderLastPlaces()}
           </div>
           
