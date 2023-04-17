@@ -16,6 +16,7 @@ export default function AddPlaceForm() {
   }
   const [newPlace, setNewPlace] = useState(initialState);
   const [image, setImage] = useState('');
+  const [links, setLinks] = useState([]);
   const navigate = useNavigate();
 //   const { user } = useAuth();
 
@@ -39,6 +40,13 @@ export default function AddPlaceForm() {
     })
   }
 
+  const handleLinks = (e, index) => {
+    const { value } = e.target;
+    const updatedLinks = [...links];
+    updatedLinks[index] = value;
+    setLinks(updatedLinks);
+  }
+
   // ******** Cloudinary Upload files ********
   const handleFileUpload = (e) => {
     const uploadData = new FormData();
@@ -55,7 +63,8 @@ export default function AddPlaceForm() {
     try {
       const addedPlace = await placeService.createPlace({
         ...newPlace,
-        image: image
+        image: image,
+        links: links
       });
       if(addedPlace && addedPlace._id){
         toast.success('Place created successfully!');
@@ -89,6 +98,7 @@ export default function AddPlaceForm() {
                         </label>
                       </aside>
                 ))}
+                </div>
             
             <label>Place image</label>
                 <input type="file" name="image" onChange={(e) => handleFileUpload(e)} />
@@ -99,10 +109,14 @@ export default function AddPlaceForm() {
             <label>Location</label>
                 <input type="text" name="location" value={newPlace.location} onChange={handleChange} />
 
-            <label>Link</label>
-                <input type="text" name="links" value={newPlace.links} onChange={handleChange} />
+            {[0, 1, 2].map(index => (
+            <label className='links' key={index}>
+                <label>{`Link ${index + 1}`}</label>
+                    <input type="text" value={links[index] || ''} onChange={e => handleLinks(e, index)} />
+                </label>
+            ))}
         
-        </div>  
+          
 
             <button className="btn" type="submit">
                 <span className="front">Create Place</span> 

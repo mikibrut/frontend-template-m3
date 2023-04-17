@@ -92,8 +92,6 @@ div.app-body {
   
 }
 
-
-
 /*-----CARD DETAIL----*/
 
 .card-detail {
@@ -133,9 +131,16 @@ div.app-body {
   font-size: 16px;
 } 
 
+.link-list{
+  display: inline-flex;
+  justify-content: space-around;
+  padding: 0 30px;
+  margin: 10px 0;
+}
+
 .link{
   color: #3d3d3d;
-  font-size: 40px ;
+  font-size: 30px ;
 }
 
 /*-------FORMS----*/
@@ -165,7 +170,12 @@ input {
   padding: 10px;
   border-radius: 25px;
   border: 2px solid #3d3d3d;
-  
+}
+
+.links{
+  margin: 5px;
+  padding-top: 5px;
+  width: 100%;
 }
 
 textarea {
@@ -174,7 +184,6 @@ textarea {
   padding: 10px;
   border-radius: 25px;
   border: 2px solid #3d3d3d;
-  /* background-color: #FFF4F4; */
   margin-bottom: 20px;
   font-family: 'Poppins', sans-serif;
   font-weight: bold;
@@ -254,8 +263,12 @@ select {
   background-color: #FFD3D3;
 }
 
+/*-------PASSWORD EYE----*/
+
 .password-input{
   display: flex;
+  height: 40px;
+  padding: 0;
   gap: 10px;
   width: 100%;
 }

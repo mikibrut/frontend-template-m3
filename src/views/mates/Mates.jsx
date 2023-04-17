@@ -14,8 +14,6 @@ function Mates() {
   const [searchValue, setSearchValue] = useState('');
   const [loading, setLoading] = useState(true);
  
-
-
   const getMates = async () => {
     try {
       const response = await mateService.getMates();
@@ -41,6 +39,7 @@ function Mates() {
           <div>
             <Search handleSearchValue={handleSearch} />
           </div>
+
           <div>
           {mates.filter(elem => {
             const locationMatch = elem.location.toLowerCase().includes(searchValue.toLowerCase());
@@ -50,11 +49,13 @@ function Mates() {
             return <CardMate key={elem._id} mate={elem}/>
           })}
           </div>
+
         <Link className="add-btn" style={{ textDecoration: 'none', color:"#3d3d3d", fontSize: "50px", fontWeight: "bold"}} to= "/mates/create">
           <GrAdd/>
         </Link>   
           
         <GoBack/>
+
     </div>)}
     </>
   )

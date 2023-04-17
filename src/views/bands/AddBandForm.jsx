@@ -16,6 +16,7 @@ export default function AddBandForm() {
   }
   const [newBand, setNewBand] = useState(initialState);
   const [image, setImage] = useState('');
+  const [links, setLinks] = useState([]);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -38,6 +39,13 @@ export default function AddBandForm() {
     })
   }
 
+  const handleLinks = (e, index) => {
+    const { value } = e.target;
+    const updatedLinks = [...links];
+    updatedLinks[index] = value;
+    setLinks(updatedLinks);
+  }
+
   // ******** Cloudinary Upload files ********
   const handleFileUpload = (e) => {
     const uploadData = new FormData();
@@ -54,7 +62,8 @@ export default function AddBandForm() {
     try {
       const addedBand = await bandService.createBand({
         ...newBand,
-        image: image
+        image: image,
+        links: links
       });
       if(addedBand && addedBand._id){
         toast.success('Band created successfully!');
@@ -96,12 +105,15 @@ export default function AddBandForm() {
             ))}
             </div> 
 
-        <label>Link</label>
-            <input type="text" name="links" value={newBand.links} onChange={handleChange} />  
-          
         <label>Location</label>
             <input type="text" name="location" value={newBand.location} onChange={handleChange} />
          
+        {[0, 1, 2].map(index => (
+        <label className='links' key={index}>
+            <label>{`Link ${index + 1}`}</label>
+                <input type="text" value={links[index] || ''} onChange={e => handleLinks(e, index)} />
+            </label>
+        ))}
 
         <button className="btn" type="submit">
             <span className="front">Create Band</span> </button>

@@ -4,7 +4,7 @@ import { useAuth } from '../../hooks/useAuth';
 import mateService from '../../services/mateService';
 import { Link } from 'react-router-dom';
 import GoBack from '../../components/GoBack';
-import { FaPen, FaTrash, FaInstagram, FaYoutube, FaFacebook } from 'react-icons/fa';
+import { FaPen, FaTrash, FaInstagram, FaYoutube, FaFacebook, FaSpotify } from 'react-icons/fa';
 
 export default function MateDetail() {
   const { mateId } = useParams();
@@ -22,12 +22,14 @@ export default function MateDetail() {
   }
 
   const renderLink = (link) => {
-    if (link.startsWith("https://www.instagram.com/")) {
+    if (link.startsWith("https://www.instagram")) {
       return <i className="link"><FaInstagram/></i>;
-    } else if (link.startsWith("https://www.youtube.com/")) {
+    } else if (link.startsWith("https://www.youtube")) {
       return <i className="link"><FaYoutube/></i>;
-    } else if (link.startsWith("https://www.facebook.com/")) {
+    } else if (link.startsWith("https://www.facebook")) {
       return <i className="link"><FaFacebook/></i>;
+    } else if (link.startsWith("https://open.spotify")) {
+      return <i className="link"><FaSpotify/></i>;
     } else { 
       return link;
     }
@@ -68,7 +70,7 @@ export default function MateDetail() {
 
             {mate.links.map((link, index) => {
               return (
-                <li key={index}>
+                <li className='link-list' key={index}>
                   <a href={link}>
                     {renderLink(link)}
                   </a>

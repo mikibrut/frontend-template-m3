@@ -1,7 +1,8 @@
 .search-container {
   position: relative;
   margin-top: 10px;
-  width: 220px;
+  width: 250px;
+  z-index: 1;
 }
 
 .search-button {

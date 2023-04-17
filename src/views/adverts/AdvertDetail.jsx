@@ -43,15 +43,7 @@ export default function AdvertDetail() {
       console.error(error);
     }
   }
-  // const getLastComments = async () => {
-  //   try {
-  //     const response = await commentService.getCommentsByAdvert(advertId);
-  //     const commentsArray = Array.from(response).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 10);
-  //     setComments(commentsArray);
-  //   } catch (error) {
-  //     console.error(error)
-  //   }
-  // }
+
   const getComments = async () => {
     try {
       const response = await commentService.getCommentsByAdvert(advertId);
@@ -60,20 +52,6 @@ export default function AdvertDetail() {
       console.error(error);
     }
   }
-
-
-  // const handleAddComment = async (newComment) => {
-  //   try {
-  //     await commentService.createComment(newComment);
-  //     navigate(`/adverts/${advertId}`)
-  //   } catch (error) {
-  //     console.error(error)
-  //   }
-  // };
-
-  // const handleShowFrom = () => {
-  //   setShowForm(prev => !prev)
-  // }
   
   const handleDelete = async () => {
     try {

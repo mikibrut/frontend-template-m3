@@ -10,7 +10,7 @@ import { useAuth } from "../hooks/useAuth";
 import { FaTrash } from 'react-icons/fa';
 import toast from 'react-hot-toast';
 
-function CommentComponent({ advertId }) {
+function Comment({ advertId }) {
   const { user } = useAuth();
   const [comments, setComments] = useState([]);
 //   const [advert, setAdvert] = useState(null);
@@ -53,6 +53,7 @@ function CommentComponent({ advertId }) {
 
   useEffect(() => {
     getAdvert();
+    
     // eslint-disable-next-line 
   },[])
 
@@ -83,7 +84,14 @@ function CommentComponent({ advertId }) {
                     <Link style={{ textDecoration: 'none', color:"#3d3d3d"}} to={`/places/${place._id}`}>{place.placeName.charAt(0).toUpperCase() + place.placeName.slice(1)}</Link>
                   </button>
             }
-            {user && <button className="user-btn" onClick={() => handleDelete(comment._id)}><FaTrash/></button>}
+            
+            {user._id && ((mate && mate.creator._id === user._id) || (band && band.creator._id === user._id) || (place && place.creator._id === user._id)) && (
+              <button className="user-btn" onClick={() => handleDelete(comment._id)}>
+                <FaTrash />
+              </button>
+            )}
+
+            
         </p>
         <hr className="comment-line" />
       </div>
@@ -93,4 +101,4 @@ function CommentComponent({ advertId }) {
   );
 }
 
-export default CommentComponent;
+export default Comment;
