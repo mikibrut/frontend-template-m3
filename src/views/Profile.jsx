@@ -59,35 +59,42 @@ export default function Profile() {
     <h4>User roles:</h4>
 
         {roleMateData && (
-          <div className='user-creator-btn'>
-            {roleMateData.map((data) => (
-              <div key={data._id}>
-
-                  <Link style={{ textDecoration: 'none', color:"#3d3d3d"}} to={`/mates/${data._id}`}>{data.creator.username}</Link>
-
-              </div>
-            ))}
-          </div>
+          <>
+          <p>Mate: </p>
+            <div className='user-creator-btn'>
+              {roleMateData.map((data) => (
+                <div key={data._id}> 
+                    <Link style={{ textDecoration: 'none', color:"#3d3d3d"}} to={`/mates/${data._id}`}>{data.creator.username}</Link>
+                </div>
+              ))}
+            </div>
+          </>
         )}
 
         {roleBandData && (
-          <div className='user-creator-btn'>
-            {roleBandData.map((data) => (
-              <div key={data._id}>
-                  <Link style={{ textDecoration: 'none', color:"#3d3d3d"}} to={`/bands/${data._id}`}>{data.bandName}</Link>
-              </div>
-            ))}
-          </div>
+          <>
+          <p>Band: </p>
+            <div className='user-creator-btn'>
+              {roleBandData.map((data) => (
+                <div key={data._id}> 
+                    <Link style={{ textDecoration: 'none', color:"#3d3d3d"}} to={`/bands/${data._id}`}>{data.bandName}</Link>
+                </div>
+              ))}
+            </div>
+          </>
         )}
 
         {rolePlaceData && (
-          <div className='user-creator-btn'>
-            {rolePlaceData.map((data) => (
-              <div key={data._id}>
-                  <Link style={{ textDecoration: 'none', color:"#3d3d3d"}} to={`/places/${data._id}`}>{data.placeName}</Link>
-              </div>
-            ))}
-          </div>
+          <>
+          <p>Place: </p>
+            <div className='user-creator-btn'>
+              {rolePlaceData.map((data) => (
+                <div key={data._id}>
+                    <Link style={{ textDecoration: 'none', color:"#3d3d3d"}} to={`/places/${data._id}`}>{data.placeName}</Link>
+                </div>
+              ))}
+            </div>
+          </>
         )}
 
       </>
