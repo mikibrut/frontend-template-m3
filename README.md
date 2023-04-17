@@ -10,10 +10,7 @@ Bandmates is a platform designed for musicians and another musical tech profiles
 
 When cloning the project, change the <code>sample.env</code> for an <code>.env</code> with the values you consider:
 ```js
-PORT=3000
-MONGO_URL='mongodb+srv://admin:admin@cluster0.pjygiq8.mongodb.net/myToneDB'
-SESSION_SECRET='Ir0nH4cK'
-NODE_ENV='development'
+REACT_APP_BACKEND_URL="http://localhost:8080"
 ```
 Then, run:
 ```bash
@@ -24,11 +21,6 @@ To start the project run:
 npm run start
 ```
 
-To work on the project and have it listen for changes:
-```bash
-npm run dev
-```
-
 For a proper view, use Google Inspection and add Iphone 12 Pro format (390x844px).
 
 ---
@@ -37,33 +29,36 @@ For a proper view, use Google Inspection and add Iphone 12 Pro format (390x844px
 
 Some wireframe examples:
 
-Sign Up
+Home logged
 
 <img src='src/img/home.png' width="120" height="250" />
 
-Home Logged
-
-<img src='docs/Readme/homeLogged.jpg' width="120" height="250" />
-
-
-New Instrument
-
-<img src='docs/Readme/newInstrument.png' width="120" height="250" />
-
-
-Instrument Card
-
-<img src='docs/Readme/instrumentCard.jpg' width="120" height="250" />
-
-
 Profile
 
-<img src='docs/Readme/Profile.jpg' width="120" height="250" />
+<img src='src/img/profile.png' width="120" height="250" />
+
+Navbar menu open
+
+<img src='src/img/nav-menu.png' width="120" height="250" />
+
+Mates
+
+<img src='src/img/mates.png' width="120" height="250" />
 
 
-Search
+Mate Detail
 
-<img src='docs/Readme/search.jpg' width="120" height="250" />
+<img src='src/img/mate-detail.png' width="120" height="250" />
+
+
+New Mate form
+
+<img src='src/img/new-mate.png' width="120" height="250" />
+
+
+Advert with comments
+
+<img src='src/img/advert.png' width="120" height="250" />
 
 
 ## User stories (MVP)
@@ -72,120 +67,31 @@ What can the user do with the app?
 - User can sign up and create and account
 - User can login
 - User can log out
-- User can edit his profile (name and picture)
-- User can create Instrument
-- User can edit Instrument (only his instruments)
-- User can delete Instrument (only his instruments)
-- User can search instruments by brand
-- User can see his own instruments together
+- User can create a Mate, Band and Place (Bandmates Roles)
+- User can upload pictures
+- User can create an Advert
+- User can edit his Mates, Bands, Places and Adverts
+- User can delete his Mates, Bands, Places and Adverts
+- User can search into each field for mates, bands and Places by location or type
+- User can see his own Bandmates roles in his profile view
+- User can create comments inside adverts
+- User can delete his comments
 
 ## User stories (Backlog)
 
-- User can "like" instruments
-- User can upload a profile picture
-- User can upload an instrument picture
-- User can mark as stoled his instruments
-- User can mark as "for sale" his instruments
-- User can follow other users
-- User can chat with other users
+- API Google Maps to locate the Bandmates
+- Inbox messages (real time chat)
+- App searcher with filters
 
 
----
-
-## Models
-
-USER MODEL:
-```js
-const userSchema = new Schema(
-{
-    username: {
-      type: String,
-      trim: true,
-      required: [true, 'Username is required.'],
-      unique: true
-    },
-    email: {
-      type: String,
-      required: [true, 'Email is required.'],
-      unique: true,
-      lowercase: true,
-      trim: true
-    },
-    hashedPassword: {
-      type: String,
-      required: [true, 'Password is required.']
-    },
-    image: {
-      type: String,
-      default: 'https://t4.ftcdn.net/jpg/00/65/77/27/360_F_65772719_A1UV5kLi5nCEWI0BNLLiFaBPEkUbv5Fv.jpg'
-    }
-  },
-  {
-    timestamps: true
-  }
-);
-```
-INSTRUMENT MODEL:
-```js
-const instrumentSchema = new Schema(
-  {
-    brand: {
-        type: String,
-        required: [true, "You must introduce your instrument's brand"]
-    },
-    model:  {
-        type: String,
-        required: [true, "You must introduce your instrument's model"]
-    },
-    year: Number,
-    madeIn: String,
-    type: {
-        type: String,
-        
-    },
-    description: String,
-    owner:{
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-    },
-    image: {
-        type: String,
-        default: 'https://www.nicepng.com/png/detail/2-24003_jpg-freeuse-stock-guitar-png-for-free-download.png'
-    },
-},
-    {timestamps: true
-
-});
-```
----
-
-## Routes
-
-| Name          |Method | Endpoint            |Protected| Req.body                                                |Redirects                  |
-|---------------|-------|---------------------|---------|---------------------------------------------------------|---------------------------|
-| Home          |GET    |/                    | No      |                                                         |                           |
-| Login         |GET    |/auth/login          | No      |                                                         |                           |
-| Login         |POST   |/auth/login          | No      |{email, password}                                        |/profile                   |
-| Signup        |GET    |/auth/signup         | No      |                                                         |                           |
-| Signup        |POST   |/auth/signup         | No      |{username, email, password}                              |/auth/login                |
-| Profile       |GET    |/profile             | Yes     |                                                         |                           |
-| Edit Profile  |GET    |/profile/edit        | Yes     |                                                         |                           |
-| Edit rofile   |POST   |/profile/edit        | Yes     |{brand, model, year, type, madeIn, image, description}   |/instruments/:instrumentId |
-| New instrument|GET    |/instruments/new     | Yes     |                                                         |                           |
-| New instrument|POST   |/instruments/new     | Yes     |{username, image}                                        |/profile                   |
-| Search        |GET    |/instruments/search  | Yes     |                                                         |                           |
-| Instrument    |GET    |/:instrumentId       | Yes     |                                                         |                           |
-| Edit          |GET    |/edit/:instrumentId  | Yes     |                                                         |                           |
-| Edit          |POST   |/edit/:instrumentId  | Yes     |{brand, model, year, type, madeIn, image, description}   |/instruments/:instrumentId | 
-| Delete        |GET    |/delete/:instrumentId| Yes     |                                                         |                           |
 ---
 
 ## Useful links
 
-- [Github Repo](https://github.com/Module2-project-ironhack-MyTONE/MyTONE)
-- [Trello kanban](https://trello.com/b/JqeQghJo/mytone)
-- [Deployed version](https://mytone.fly.dev/)
-- [Presentation slides](https://slides.com/d/cFEMWTM/live)
+- [Github Repo](https://github.com/mikibrut/frontend-template-m3)
+- [Trello kanban](https://trello.com/b/IBzqquNL/bandmates)
+- [Deployed version](https://bandmates.netlify.app/)
+- [Presentation slides](https://docs.google.com/presentation/d/10lul18gnjLImY5lmKRytbhXvJNJPwgkH8tTjw0EKNaQ/edit#slide=id.p)
 
 
 
