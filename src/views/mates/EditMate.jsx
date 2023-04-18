@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import mateService from '../../services/mateService';
 import GoBack from '../../components/GoBack';
 
+
 export default function EditMate() {
   const { mateId } = useParams();
   const [mate, setMate] = useState({

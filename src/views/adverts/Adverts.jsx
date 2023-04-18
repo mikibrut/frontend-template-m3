@@ -6,16 +6,11 @@ import GoBack from '../../components/GoBack';
 import { Link } from 'react-router-dom';
 import { GrAdd } from 'react-icons/gr';
 
-
-
-
 function Adverts() {
   const [adverts, setAdverts] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   const [loading, setLoading] = useState(true);
  
-
-
   const getAdverts = async () => {
     try {
       const response = await advertService.getAdverts();

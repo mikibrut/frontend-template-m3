@@ -20,7 +20,6 @@ export default function AddMateForm() {
   const [links, setLinks] = useState([]);
   const navigate = useNavigate();
 
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setNewMate(prevState => {

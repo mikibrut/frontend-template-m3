@@ -28,7 +28,6 @@ export default function EditAdvert() {
     // eslint-disable-next-line
   }, [advertId])
 
-
   const handleChange = (e) => {
     setAdvert(prev => {
       return {

@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import GoBack from '../../components/GoBack';
 import { FaPen, FaTrash, FaInstagram, FaYoutube, FaFacebook, FaSpotify } from 'react-icons/fa';
 
+
 export default function MateDetail() {
   const { mateId } = useParams();
   const { user } = useAuth();

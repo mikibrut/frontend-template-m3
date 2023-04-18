@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import placeService from '../../services/placeService';
 import GoBack from '../../components/GoBack';
 
+
 export default function EditPlace() {
   const { placeId } = useParams();
   const [place, setPlace] = useState({

@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import GoBack from '../../components/GoBack';
 import { FaPen, FaTrash, FaInstagram, FaYoutube, FaFacebook, FaSpotify  } from 'react-icons/fa';
 
+
 export default function PlaceDetail() {
   const { placeId } = useParams();
   const { user } = useAuth();
@@ -14,15 +15,6 @@ export default function PlaceDetail() {
   const [mate, setMate] = useState(null);
   const navigate = useNavigate();
   
-  // const getPlace = async () => {
-  //   try {
-  //     const response = await placeService.getPlace(placeId);
-  //     setPlace(response);  
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }
-
   const getPlace = async () => {
     try {
       let creatorMate = undefined;

@@ -6,13 +6,12 @@ import Search from '../../components/Search';
 import { Link } from 'react-router-dom';
 import { GrAdd } from 'react-icons/gr';
 
+
 function Places() {
   const [places, setPlaces] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   const [loading, setLoading] = useState(true);
  
-
-
   const getPlaces = async () => {
     try {
       const response = await placeService.getPlaces();

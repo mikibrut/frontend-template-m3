@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import bandService from '../../services/bandService';
 import GoBack from '../../components/GoBack';
 
+
 export default function EditBand() {
   const { bandId } = useParams();
   const [band, setBand] = useState({
@@ -31,7 +32,6 @@ export default function EditBand() {
     getBand();
     // eslint-disable-next-line
   }, [bandId])
-
 
   const handleChange = (e) => {
     setBand(prev => {

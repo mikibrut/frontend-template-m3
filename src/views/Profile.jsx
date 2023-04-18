@@ -42,8 +42,6 @@ export default function Profile() {
     // eslint-disable-next-line
   }, []);
 
-  
-
   return (
     <>
     <div className="app-body">

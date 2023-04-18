@@ -7,8 +7,6 @@ import { Link } from 'react-router-dom';
 import { GrAdd } from 'react-icons/gr';
 
 
-
-
 function Mates() {
   const [mates, setMates] = useState([]);
   const [searchValue, setSearchValue] = useState('');

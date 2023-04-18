@@ -7,8 +7,6 @@ import { Link } from 'react-router-dom';
 import { GrAdd } from 'react-icons/gr';
 
 
-
-
 function Bands() {
   const [bands, setBands] = useState([]);
   const [searchValue, setSearchValue] = useState('');
