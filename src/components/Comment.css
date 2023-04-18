@@ -1,9 +1,13 @@
 .comment-container {
     text-align: left;
+    margin: 10px 0;
   }
   
   .comment {
     margin-bottom: 20px;
+    border: 2px solid #3d3d3d;
+    border-radius: 25px;
+    padding: 15px 10px;
   }
   
   .comment-title {
@@ -11,7 +15,7 @@
   }
   
   .comment-line {
-    border-top: 1px solid black;
+    border-top: 3px solid black;
     margin-top: 20px;
     margin-bottom: 10px;
   }
@@ -22,8 +26,8 @@
   }
   
   .delete-btn {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     display: inline-block;
     align-items: center;
     justify-content: center;
@@ -31,10 +35,7 @@
     border: none;
     background-color: #FF9AD6;
     color: #3d3d3d;
-    font-size: 15px;
-    padding: 5px;
-    margin-left: 10px;
   }
-  
+
 
   

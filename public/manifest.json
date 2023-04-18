@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Bandmates",
+  "name": "The app to find musical oriented profiles for your band",
   "icons": [
     {
       "src": "favicon.ico",

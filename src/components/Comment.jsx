@@ -56,9 +56,10 @@ function Comment({ advertId }) {
     <div className="comment-container">
       {comments.map((comment) => (
         <div key={comment._id} className="comment">
-          <hr className="comment-line"></hr>
+
           <h3 className="comment-title">{comment.title}</h3>
           <p className="comment-text">{comment.text}</p>
+
           {comment.creator && (
             <p className="comment-creator"> Commented by:
               <button className="user-creator-btn">
@@ -68,12 +69,15 @@ function Comment({ advertId }) {
               </button>
             </p>
           )}
+
           {user?._id === comment.creator?._id && (
             <button className="delete-btn" onClick={() => handleDelete(comment._id)}>
               <FaTrash />
             </button>
           )}
-          <hr className="comment-line"></hr>
+
+          {/* <hr className="comment-line"></hr> */}
+
         </div>
       ))}
     </div>
