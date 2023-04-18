@@ -91,7 +91,7 @@ What can the user do with the app?
 - [Github Repo](https://github.com/mikibrut/frontend-template-m3)
 - [Trello kanban](https://trello.com/b/IBzqquNL/bandmates)
 - [Deployed version](https://bandmates.netlify.app/)
-- [Presentation slides](https://docs.google.com/presentation/d/10lul18gnjLImY5lmKRytbhXvJNJPwgkH8tTjw0EKNaQ/edit#slide=id.p)
+- [Presentation slides](https://docs.google.com/presentation/d/1V6tZabPJYY1sYqUBFBPSbMqYPy1HyildeBlgsUyq8OY/edit?usp=sharing)
 
 
 
